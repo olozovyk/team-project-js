@@ -1,0 +1,38 @@
+<header class="header">
+  <!--navigation -->
+  <!--conteiner 1-->
+  <div class="header__navigation container">
+    <nav class="header__menu">
+      <!--Logo -->
+      <div class="header__logo">
+        <a href="./index.html" class="header__logo--link">
+          <svg class="icon--logo" width="24" height="24">
+            <use class="logo__icone" href=""></use>
+          </svg>
+          <span class="logo__title">Filmoteka </span>
+        </a>
+      </div>
+
+      <!-- menu navigation -->
+      <ul class="header__list">
+        <li><a href="#" class="header__link header__link--current">Home</a></li>
+        <li><a href="#" class="header__link">my library</a></li>
+      </ul>
+    </nav>
+    <form class="header__form" autocomplete="on">
+      <label class="header__form--subscribe">
+        <input
+          type="text"
+          name="user_text"
+          class="header__form--input"
+          placeholder="Поиск фильмов"
+        />
+      </label>
+      <button class="header__form--button" type="submit">
+        <svg class="header__form--icon" width="12" height="12">
+          <use href=""></use>
+        </svg>
+      </button>
+    </form>
+  </div>
+</header>
