@@ -11,20 +11,22 @@ export async function getMovies({ page = 1, query } = {}) {
       const data = await axios(
         `${BASE_URL}search/movie?api_key=${API_KEY}&language=ru&page=${page}&query=${query}`,
       );
-      const movies = data.data.results;
-      const modifyGenresArray = await modifyGenres(movies, genres);
-      return modifyImage(modifyGenresArray);
-    }
 
+      return addGenresAndPictures(data, genres);
+    }
     const data = await axios(
       `${BASE_URL}trending/movie/week?api_key=${API_KEY}&language=ru&page=${page}`,
     );
-    const movies = data.data.results;
-    const modifyGenresArray = modifyGenres(movies, genres);
-    return modifyImage(modifyGenresArray);
+    return addGenresAndPictures(data, genres);
   } catch (error) {
     console.log(error);
   }
+}
+
+function addGenresAndPictures(data, genres) {
+  const movies = data.data.results;
+  const modifyGenresArray = modifyGenres(movies, genres);
+  return modifyImage(modifyGenresArray);
 }
 
 async function getGenres() {
