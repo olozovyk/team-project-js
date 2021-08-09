@@ -1,0 +1,44 @@
+.footer{
+   background-color: $greyfooter;
+}
+
+.footer__container{
+width: 250px; 
+text-align: center; 
+@include beforeTablet{
+padding-top:28.7px ;
+padding-bottom: 28.5px;
+padding-left: 0;
+padding-right: 0;
+
+
+} 
+@include tablet {
+padding-top: 30px ;
+padding-bottom: 28px;
+width: 100%;
+}
+}
+
+.footer__logo--web{
+width: 187px; 
+// padding-right: 67px ;
+// padding-left: 66px; 
+
+  @include tablet{
+      width: 100%;
+     padding: 0;
+  }
+}
+
+.footer__link{
+text-align: center;
+color: $darkGrey;
+font-family : $ffRegular; 
+font-size: var(--font-size14);
+}
+
+.footer__form--icon{
+   margin-right: 10px;
+   margin-left: 10px;
+}

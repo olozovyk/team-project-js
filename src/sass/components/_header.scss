@@ -1,0 +1,216 @@
+:root{
+--cubic-function: cubic-bezier(0.4, 0, 0.2, 1);
+--duration-time: 250ms;
+--font-size12: 12px;
+--font-size14: 14px;
+--font-size30: 30px;
+}
+
+%transitionColor {
+  transition-property: color;
+  transition-duration: var(--duration-time);
+  transition-timing-function: var(--cubic-function);
+}
+
+
+%transitionTransform  {
+  transition: transform 250ms var(--cubic-function), opacity 250ms var(--cubic-function);
+}
+.header{
+   background-size: cover;
+ @include tablet{
+ @media (min-device-pixel-ratio: 3),
+ (min-resolution: 288dpi),
+ (min-resolution: 3dppx) {
+   background-image:
+     url(../images/Rectangle3x.jpg);
+ }
+}
+ @include beforeTablet {
+     @media (min-device-pixel-ratio: 2),
+ (min-resolution: 192dpi),
+ (min-resolution: 2dppx) {
+   background-image:
+     url(../images/Rectangle2x.jpg);
+ }
+ }
+ @include betweenTabDesk{
+ @media (min-device-pixel-ratio: 2),
+ (min-resolution: 192dpi),
+ (min-resolution: 2dppx) {
+   background-image:
+   url(../images/Rectangle2x.jpg);
+ 
+ }
+ }
+ @include desktop {
+ @media (min-device-pixel-ratio: 1),
+ (min-resolution: 96dpi),
+ (min-resolution: 1dppx) {
+   background-image:
+   url(../images/Rectangle1x.jpg);
+ } 
+ }
+
+}
+.header__navigation {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+  @include beforeTablet{
+  padding-top: 46px;
+  padding-bottom: 43px;
+  }
+   @include tablet{
+   padding-top: 41px;
+   padding-bottom: 59px;
+   } 
+ @include  desktop{
+   padding-top: 43px;
+   padding-bottom: 57px; 
+ }
+}
+
+.header__menu { 
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-right: auto;
+@include beforeTablet{
+padding-bottom: 43px; 
+}
+ @include tablet {
+   text-align: center;
+   padding-bottom: 37px;
+  }
+}
+
+.icon--logo{
+fill: currentColor;
+box-sizing: border-box; 
+@include tablet {
+margin-right: 10px; 
+}
+}
+
+.logo__title{
+display: none; 
+@include tablet { 
+display: contents;  
+color: $white; 
+font-family : $ffRegular; 
+font-size: var(--font-size30);
+max-width: 141px;  
+}
+}
+
+.header__list{
+display: flex;
+align-items: center;
+justify-content: space-between;
+& li:not(:last-child){margin-right: 39px;
+} 
+}
+
+
+.header__link{ 
+display:  Flex;
+align-items: center;
+justify-content: space-between;
+position: relative;
+color: $white;
+font-family: $ffMedium;
+font-size: var(--font-size12);
+}
+ 
+.header__link::after {
+display: block;
+position: absolute;
+content: '';
+left: 0;
+top: 15px;
+width: 100%;
+height: 3px;
+background: $orange;
+opacity: 0;
+@extend %transitionTransform ;
+transform: scaleX(0);
+}
+
+.header__link--current::after {
+opacity: 1;
+@extend %transitionTransform ;
+transform: scaleX(1);
+} 
+
+.header__link:focus::after {
+opacity: 1;
+transform: scalex(1); 
+}
+
+.header__form{
+display: block;
+min-height: 20px;
+position: relative;   
+border-bottom: 1px solid $grey;
+margin-left: auto;
+margin-right: auto;
+font-size: var(--font-size14); 
+margin-bottom: 22px;
+@include beforeTablet{
+   width: 280px;
+}
+@include tablet{
+   width: 336px;
+}
+}
+
+.header-input{
+   vertical-align: middle;
+   color: $white;
+   font-family: $ffRegular;
+   font-size: var(--font-size14);
+   background-color: transparent;
+   @include beforeTablet{
+   width: 280px;
+}
+@include tablet{
+   width: 336px;
+}
+}
+
+//placeholder//
+.header__form.input::placeholder{
+text-align: right;
+background-color: transparent;
+color: $white;
+}
+
+
+.header__form--button{
+position: absolute;
+right: 0px;
+border: none;
+outline: none;
+cursor: pointer;
+background: transparent;
+}
+
+//cтили сообщения//
+.header__notice{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+font-size: var(--font-size14);
+font-family: $ffRegular;
+color: $red;
+line-height: 1.14;
+margin: 0 auto;
+@include beforeTablet{
+width: 280px; 
+}
+@include tablet{
+   width: 100%;
+}
+
+}
