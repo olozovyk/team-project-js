@@ -1,6 +1,6 @@
 import 'modern-normalize/modern-normalize.css';
 import './sass/main.scss';
-import { getMovies, getMoviesById } from './js/fetch';
+import { getMovies, getMovieById } from './js/fetch';
 import { genresSet, dataSet } from './js/templatingSettings';
 import templatingOneFilm from './templates/templatingOneFilm.hbs';
 import { refs } from './js/refs';
@@ -20,4 +20,4 @@ getMovies({ page: numberPage })
     refs.movies.innerHTML = templatingOneFilm(films);
   });
 
-getMoviesById(522478).then(console.log);
+getMovieById(522478).then(console.log);

@@ -23,7 +23,7 @@ async function getMovies({ page = 1, query } = {}) {
   }
 }
 
-async function getMoviesById(movieId) {
+async function getMovieById(movieId) {
   try {
     const response = await axios(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=ru`,
@@ -72,4 +72,4 @@ function modifyImage(movies) {
   });
 }
 
-export { getMovies, getMoviesById };
+export { getMovies, getMovieById };
