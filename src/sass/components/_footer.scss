@@ -21,13 +21,15 @@ width: 100%;
 }
 
 .footer__logo--web{
+   display: inline-flex;
 width: 187px; 
-// padding-right: 67px ;
-// padding-left: 66px; 
+margin-bottom: 10px;
 
   @include tablet{
+     display:inline;
       width: 100%;
-     padding: 0;
+    margin-bottom: 0px;
+
   }
 }
 

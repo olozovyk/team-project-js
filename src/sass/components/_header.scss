@@ -16,43 +16,53 @@
 %transitionTransform  {
   transition: transform 250ms var(--cubic-function), opacity 250ms var(--cubic-function);
 }
-.header{
-   background-size: cover;
- @include tablet{
- @media (min-device-pixel-ratio: 3),
- (min-resolution: 288dpi),
- (min-resolution: 3dppx) {
-   background-image:
-     url(../images/Rectangle3x.jpg);
- }
-}
- @include beforeTablet {
-     @media (min-device-pixel-ratio: 2),
- (min-resolution: 192dpi),
- (min-resolution: 2dppx) {
-   background-image:
-     url(../images/Rectangle2x.jpg);
- }
- }
- @include betweenTabDesk{
- @media (min-device-pixel-ratio: 2),
- (min-resolution: 192dpi),
- (min-resolution: 2dppx) {
-   background-image:
-   url(../images/Rectangle2x.jpg);
- 
- }
- }
- @include desktop {
- @media (min-device-pixel-ratio: 1),
- (min-resolution: 96dpi),
- (min-resolution: 1dppx) {
-   background-image:
-   url(../images/Rectangle1x.jpg);
- } 
- }
 
+.header{
+width: 100%;
+background-size: cover;
+background-color: rgba(0, 0, 0, 0.56);
+background-repeat: no-repeat;
+background-position: center;
+text-align: center;
+background-image: 
+url("../images/home1xmob.jpg");
+
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+background-image: 
+url("../images/home2xmob.jpg");
 }
+}
+
+@include tablet {
+   .header{
+   min-width: 768px;
+background-image:  
+url("../images/home1xtab.jpg");
+
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+  background-image:  
+url("../images/home2xtab.jpg");
+   }
+ }
+ }
+@include desktop {
+   .header {
+  background-image:
+url("../images/home1xdesk.jpg");
+
+   @media (min-device-pixel-ratio: 2),
+   (min-resolution: 192dpi),
+   (min-resolution: 2dppx) {
+     background-image:
+url("../images/home2xdesk.jpg");
+   }
+ }
+}
+
 .header__navigation {
    display: block;
    margin-left: auto;
@@ -118,6 +128,7 @@ display:  Flex;
 align-items: center;
 justify-content: space-between;
 position: relative;
+text-transform: uppercase;
 color: $white;
 font-family: $ffMedium;
 font-size: var(--font-size12);
@@ -180,8 +191,8 @@ margin-bottom: 22px;
 }
 
 //placeholder//
-.header__form.input::placeholder{
-text-align: right;
+.header__form input::placeholder{
+text-align: left;
 background-color: transparent;
 color: $white;
 }
