@@ -6,7 +6,8 @@ import templatingOneFilm from './templates/templatingOneFilm.hbs';
 import { refs } from './js/refs';
 import './js/searchQuery';
 
-getMovies()
+let numberPage = 1;
+getMovies({ page: numberPage })
   .then(films => {
     const filmsArr = films.map(film => {
       const filmGenres = genresSet(film.genreNames);
@@ -16,7 +17,7 @@ getMovies()
     return filmsArr;
   })
   .then(films => {
-    console.log(templatingOneFilm(films));
+    refs.movies.innerHTML = templatingOneFilm(films);
   });
 
 console.log(refs.movies);

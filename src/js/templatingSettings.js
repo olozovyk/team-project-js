@@ -8,7 +8,11 @@ function genresSet(arreyGenreNames) {
 }
 
 function dataSet(release_date) {
-  return new Date(release_date).getFullYear();
+  if (release_date) {
+    return new Date(release_date).getFullYear();
+  } else {
+    return '';
+  }
 }
 
 export { genresSet, dataSet };
