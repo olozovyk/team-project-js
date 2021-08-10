@@ -1,23 +1,33 @@
 import { getMovies } from './fetch';
 import templatingOneFilm from '../templates/templatingOneFilm.hbs';
 import { refs } from './refs';
+import { dataSet, genresSet } from './templatingSettings';
 
-refs.input.addEventListener('change', onInputSearch);
-refs.searchBtn.addEventListener('click', onSearchButtonClick);
+refs.searchForm.addEventListener('submit', onInputSearch);
 
 function onInputSearch(e) {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const searchQuery = form.elements.user_text.value;
+    
     clearInterface();
-    const searchQuery = e.currentTarget.value.trim();
-    getMovies({query: searchQuery })
+
+    getMovies({ query: searchQuery })
         .then(movies => {
-            console.log(movies)
-            refs.filmList.insertAdjacentHTML('beforeend', templatingOneFilm(movies));
-        });
+            const arrayOfMovies = movies.map(movie => {
+                const movieGenres = genresSet(movie.genreNames);
+                const movieDate = dataSet(movie.release_date);
+                return { ...movie, movieGenres, movieDate };
+            });
+            return arrayOfMovies;
+        })
+        .then(cardRender)
+        .finally(form.reset())        
 };
 
-function onSearchButtonClick(e) {
-    e.preventDefault();
-    refs.input.innerHTML = '';
+function cardRender(movies) {
+    refs.filmList.insertAdjacentHTML('beforeend', templatingOneFilm(movies));
 };
 
 function clearInterface() {
