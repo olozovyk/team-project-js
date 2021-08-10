@@ -3,7 +3,7 @@ import axios from 'axios';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '98b2d661a291459629d67fe532d04a86';
 
-export async function getMovies({ page = 1, query } = {}) {
+async function getMovies({ page = 1, query } = {}) {
   const genres = await getGenres();
 
   try {
@@ -18,6 +18,20 @@ export async function getMovies({ page = 1, query } = {}) {
       `${BASE_URL}trending/movie/week?api_key=${API_KEY}&language=ru&page=${page}`,
     );
     return addGenresAndPictures(data, genres);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getMoviesById(movieId) {
+  try {
+    const response = await axios(
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=ru`,
+    );
+    const data = response.data;
+    const genres = data.genres.map(genre => genre.name);
+    const poster = `https://image.tmdb.org/t/p/original${data.poster_path}`;
+    return { ...data, genres, poster };
   } catch (error) {
     console.log(error);
   }
@@ -57,3 +71,5 @@ function modifyImage(movies) {
     return { ...item, poster };
   });
 }
+
+export { getMovies, getMoviesById };
