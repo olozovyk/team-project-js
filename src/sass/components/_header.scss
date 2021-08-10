@@ -23,7 +23,7 @@ background-size: cover;
 background-color: rgba(0, 0, 0, 0.56);
 background-repeat: no-repeat;
 background-position: center;
-text-align: center;
+
 background-image: 
 url("../images/home1xmob.jpg");
 
@@ -37,6 +37,7 @@ url("../images/home2xmob.jpg");
 
 @include tablet {
    .header{
+   text-align: center;
    min-width: 768px;
 background-image:  
 url("../images/home1xtab.jpg");
@@ -65,19 +66,21 @@ url("../images/home2xdesk.jpg");
 
 .header__navigation {
    display: block;
+   position:relative ;
    margin-left: auto;
    margin-right: auto;
+   padding-bottom: 97px;
   @include beforeTablet{
   padding-top: 46px;
-  padding-bottom: 43px;
+ 
   }
    @include tablet{
    padding-top: 41px;
-   padding-bottom: 59px;
+  
    } 
  @include  desktop{
    padding-top: 43px;
-   padding-bottom: 57px; 
+
  }
 }
 
@@ -164,15 +167,16 @@ display: block;
 min-height: 20px;
 position: relative;   
 border-bottom: 1px solid $grey;
-margin-left: auto;
+
 margin-right: auto;
 font-size: var(--font-size14); 
 margin-bottom: 22px;
 @include beforeTablet{
-   width: 280px;
+  max-width: 280px;
 }
 @include tablet{
    width: 336px;
+   margin-left: auto;
 }
 }
 
@@ -181,12 +185,10 @@ margin-bottom: 22px;
    color: $white;
    font-family: $ffRegular;
    font-size: var(--font-size14);
-   background-color: transparent;
-   @include beforeTablet{
-   width: 280px;
-}
+   background-color: transparent; 
+   max-width: 280px;
 @include tablet{
-   width: 336px;
+ min-width: 336px;
 }
 }
 
@@ -210,8 +212,11 @@ background: transparent;
 //cтили сообщения//
 .header__notice{
 display: flex;
+position: absolute;
+left: 20px;
 flex-wrap: wrap;
 justify-content: center;
+text-align: left;
 font-size: var(--font-size14);
 font-family: $ffRegular;
 color: $red;
@@ -222,6 +227,9 @@ width: 280px;
 }
 @include tablet{
    width: 100%;
+   bottom: 57px;
+   text-align: center;
+   left: 0px;
 }
 
 }
