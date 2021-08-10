@@ -4,6 +4,7 @@ import { getMovies } from './js/fetch';
 import { genresSet, dataSet } from './js/templatingSettings';
 import templatingOneFilm from './templates/templatingOneFilm.hbs';
 import { refs } from './js/refs';
+import './js/searchQuery';
 
 getMovies()
   .then(films => {
