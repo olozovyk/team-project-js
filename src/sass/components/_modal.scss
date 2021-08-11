@@ -9,7 +9,7 @@ li {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  display: flex;
+  //   display: flex;
   flex-direction: column;
   position: absolute;
   margin-left: 20px;
@@ -27,9 +27,13 @@ li {
 }
 
 .close-icon {
-  left: 913px;
-  top: 110px;
-  fill: $black;
+  margin-bottom: 10px;
+  margin-left: 10px;
+
+  @include desktop {
+    margin-bottom: 19px;
+    margin-left: 22px;
+  }
 }
 
 .name-film {
@@ -97,7 +101,7 @@ li {
   margin-top: 20px;
 }
 
-.btn__wached,
+.btn__watched,
 .btn__queue {
   cursor: pointer;
   width: 113px;
@@ -120,17 +124,17 @@ li {
   margin-left: 15px;
 }
 
-.btn__wached {
+.btn__watched {
   @mixin beforeTablet {
     padding-right: 19px;
     padding-left: 19px;
   }
 }
 
-.btn__wached :hover,
-.btn__wached :focus,
-.btn__queue :hover,
-.btn__queue :focus {
+.btn__watched:hover,
+.btn__watched:focus,
+.btn__queue:hover,
+.btn__queue:focus {
   background: $orange;
   box-sizing: border-box;
   border-radius: 5px;

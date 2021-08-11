@@ -5,6 +5,7 @@ import { genresSet, dataSet } from './js/templatingSettings';
 import templatingOneFilm from './templates/templatingOneFilm.hbs';
 import { refs } from './js/refs';
 import './js/searchQuery';
+import { openModal } from './js/modal';
 
 let numberPage = 1;
 getMovies({ page: numberPage })
@@ -18,6 +19,7 @@ getMovies({ page: numberPage })
   })
   .then(films => {
     refs.movies.innerHTML = templatingOneFilm(films);
-  });
+  })
+  .then(openModal);
 
 getMovieById(522478).then(console.log);
