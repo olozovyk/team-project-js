@@ -16,9 +16,9 @@ function onInputSearch(e) {
     getMovies({ query: searchQuery })
         .then(movies => {
             const arrayOfMovies = movies.map(movie => {
-                const movieGenres = genresSet(movie.genreNames);
-                const movieDate = dataSet(movie.release_date);
-                return { ...movie, movieGenres, movieDate };
+                const filmGenres = genresSet(movie.genreNames);
+                const filmDate = dataSet(movie.release_date);
+                return { ...movie, filmGenres, filmDate };
             });
             return arrayOfMovies;
         })
