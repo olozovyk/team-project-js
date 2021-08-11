@@ -2,24 +2,34 @@ import { getMovies } from './fetch';
 import templatingOneFilm from '../templates/templatingOneFilm.hbs';
 import { refs } from './refs';
 import { openModal } from './modal';
+import { dataSet, genresSet } from './templatingSettings';
 
-refs.input.addEventListener('change', onInputSearch);
-refs.searchBtn.addEventListener('click', onSearchButtonClick);
+refs.searchForm.addEventListener('submit', onInputSearch);
 
 function onInputSearch(e) {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const searchQuery = form.elements.user_text.value;
+    
     clearInterface();
-    const searchQuery = e.currentTarget.value.trim();
+
     getMovies({ query: searchQuery })
         .then(movies => {
-            console.log(movies)
-            refs.filmList.insertAdjacentHTML('beforeend', templatingOneFilm(movies));
+            const arrayOfMovies = movies.map(movie => {
+                const filmGenres = genresSet(movie.genreNames);
+                const filmDate = dataSet(movie.release_date);
+                return { ...movie, filmGenres, filmDate };
+            });
+            return arrayOfMovies;
         })
+        .then(cardRender)
+        .finally(form.reset())
         .then(openModal);
 };
 
-function onSearchButtonClick(e) {
-    e.preventDefault();
-    refs.input.innerHTML = '';
+function cardRender(movies) {
+    refs.filmList.insertAdjacentHTML('beforeend', templatingOneFilm(movies));
 };
 
 function clearInterface() {
