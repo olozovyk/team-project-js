@@ -1,6 +1,7 @@
 import { getMovies } from './fetch';
 import templatingOneFilm from '../templates/templatingOneFilm.hbs';
 import { refs } from './refs';
+import { openModal } from './modal';
 import { dataSet, genresSet } from './templatingSettings';
 
 refs.searchForm.addEventListener('submit', onInputSearch);
@@ -23,7 +24,8 @@ function onInputSearch(e) {
             return arrayOfMovies;
         })
         .then(cardRender)
-        .finally(form.reset())        
+        .finally(form.reset())
+        .then(openModal);
 };
 
 function cardRender(movies) {
