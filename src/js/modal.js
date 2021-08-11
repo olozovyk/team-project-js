@@ -4,9 +4,6 @@ export function openModal() {
     closeModalBtn: document.querySelector('[data-modal-close]'),
     modal: document.querySelector('[data-modal]'),
   };
-  console.log(refs.openModalBtn);
-  console.log(refs.closeModalBtn);
-  console.log(refs.modal);
 
   refs.openModalBtn.addEventListener('click', toggleOpenModal);
   refs.closeModalBtn.addEventListener('click', toggleModal);
