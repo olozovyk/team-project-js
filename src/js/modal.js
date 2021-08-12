@@ -1,3 +1,8 @@
+import { getMovieById } from './fetch';
+import movieTemplate from '../../src/templates/modal.hbs';
+
+const modalEl = document.querySelector('#modal-content');
+
 export function openModal() {
   const refs = {
     openModalBtn: document.querySelector('[data-modal-open]'),
@@ -14,8 +19,12 @@ export function openModal() {
       return;
     }
     const listItem = event.target.closest('LI');
+    const liContent = listItem.innerHTML;
     const movieId = listItem.dataset.id;
-    console.log(movieId);
+
+    getMovieById(movieId).then(movie => {
+      modalEl.innerHTML = movieTemplate(movie);
+    });
 
     if (!movieId) {
       return;

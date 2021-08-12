@@ -22,4 +22,4 @@ getMovies({ page: numberPage })
   })
   .then(openModal);
 
-// getMovieById(522478).then(console.log);
+getMovieById(522478).then(console.log);
