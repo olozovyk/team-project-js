@@ -1,9 +1,11 @@
 {{#each this}}
-<li class="film__item">
+  <li class="film__item" data-id='{{id}}'>
     <a class="film__link" href="#">
+      <div class='film__img-thumb'>
         <img src="{{poster}}" alt="{{original_title}}">
-        <h2 class="film__name">{{title}}</h2>
-        <p class="film__text">{{filmGenres}} | {{filmDate}}</p>
+      </div>
+      <h2 class="film__name">{{title}}</h2>
+      <p class="film__text">{{filmGenres}} | {{filmDate}}</p>
     </a>
-</li>
+  </li>
 {{/each}}

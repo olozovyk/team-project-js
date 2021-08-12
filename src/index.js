@@ -15,7 +15,6 @@ getMovies({ page: numberPage })
       const filmDate = dataSet(film.release_date);
       return { ...film, filmGenres, filmDate };
     });
-    console.log(filmsArr)
     return filmsArr;
   })
   .then(films => {
