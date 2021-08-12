@@ -5,7 +5,7 @@ import { genresSet, dataSet } from './js/templatingSettings';
 import templatingOneFilm from './templates/templatingOneFilm.hbs';
 import { refs } from './js/refs';
 import './js/searchQuery';
-import { openModal } from './js/modal';
+import { controlModal } from './js/modal';
 
 let numberPage = 1;
 getMovies({ page: numberPage })
@@ -20,6 +20,6 @@ getMovies({ page: numberPage })
   .then(films => {
     refs.movies.innerHTML = templatingOneFilm(films);
   })
-  .then(openModal);
+  .then(controlModal);
 
-getMovieById(522478).then(console.log);
+// getMovieById(522478).then(console.log);

@@ -211,3 +211,10 @@ li {
     width: 396px;
   }
 }
+
+// Стили кнопок, если фильм уже в каком-то из списков
+.in-list {
+  background-color: rgba(255, 107, 8, 0.4);
+  border: none;
+  color: $white;
+}
