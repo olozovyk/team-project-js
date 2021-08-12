@@ -1,28 +1,37 @@
-<img src="{{poster}}" alt="{{title}}"/>
-
-<h2 class="film__name">{{title}}</h2>
-<div class="film">
-  <div class="grade-film">
-    <ul class="grade-list">
-      <li class="grade-item">Vote / Votes</li>
-      <li class="grade-item">Popularity</li>
-      <li class="grade-item">Original Title</li>
-      <li class="grade-item">Genre</li>
-    </ul>
-  </div>
-  <div class="response-film">
-    <ul class="response-list">
-      <li class="response-item"><span class="grade">{{vote_average}}</span> / {{vote_count}}</li>
-      <li class="response-item">{{popularity}}</li>
-      <li class="response-item">{{original_title}}</li>
-      <li class="response-item">{{#each genres}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</li>
-    </ul>
-  </div>
+<div class="cover-film">
+  <img class="film-img" src="{{poster}}" alt="{{title}}" />
 </div>
 
-<div>
-  <h3 class="about">ABOUT</h3>
-  <p class="description">{{overview}}</p>
+<div class="description-film">
+  <h2 class="film__name">{{title}}</h2>
+  <div class="film">
+    <div class="grade-film">
+      <ul class="grade-list">
+        <li class="grade-item">Vote / Votes</li>
+        <li class="grade-item">Popularity</li>
+        <li class="grade-item">Original Title</li>
+        <li class="grade-item">Genre</li>
+      </ul>
+    </div>
+    <div class="response-film">
+      <ul class="response-list">
+        <li class="response-item"><span class="grade">{{vote_average}}</span> / {{vote_count}}</li>
+        <li class="response-item">{{popularity}}</li>
+        <li class="response-item">{{original_title}}</li>
+        <li class="response-item">{{#each genres}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="about">ABOUT</h3>
+    <p class="description">
+      {{overview}}
+    </p>
+  </div>
+
+  <div class="button">
+    <button class="btn__watched">ADD TO WATCHED</button>
+    <button class="btn__queue">ADD TO QUEUE</button>
+  </div>
 </div>
-
-

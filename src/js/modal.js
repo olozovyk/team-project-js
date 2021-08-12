@@ -37,6 +37,7 @@ export function openModal() {
 
   function onClickCloseModal(event) {
     refs.modal.classList.add('backdrop__hidden');
+    modalEl.innerHTML = '';
     document.body.style.overflow = 'auto';
     document.body.style.width = '100%';
   }

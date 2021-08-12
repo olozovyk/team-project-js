@@ -1,8 +1,6 @@
 main {
-  
-flex-grow: 1;
+  flex-grow: 1;
 }
-
 
 .film__list {
   display: grid;
@@ -14,4 +12,12 @@ flex-grow: 1;
   @include desktop {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  a {
+    display: block;
+  }
+}
+
+.film__img-thumb {
+  height: 398px;
 }
