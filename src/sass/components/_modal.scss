@@ -79,8 +79,8 @@ li {
   }
 
   @include desktop {
-    height: 478px;
-    width: 319px;
+    height: 594px;
+    width: 396px;
   }
 }
 
@@ -123,8 +123,6 @@ li {
   background: $orange;
   border-radius: 5px;
   color: $white;
-  width: 36px;
-  height: 16px;
   padding: 1px 10px;
 }
 
@@ -158,42 +156,49 @@ li {
 .btn__watched,
 .btn__queue {
   cursor: pointer;
-  width: 113px;
-  height: 47px;
+  // width: 113px;
+  // height: 47px;
 
   @include tablet {
-    width: 125px;
-    height: 44px;
+    // width: 125px;
+    // height: 44px;
   }
 
   @include desktop {
-    width: 136px;
-    height: 44px;
+    padding: 14px 18px;
   }
 
-  background: $white;
+  background-color: $white;
   border: 1px solid $black;
-  box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 15px;
+
+  &:last-child {
+    margin-left: 15px;
+  }
+
+  transition: background-color 150ms linear, color 100ms linear;
 }
 
 .btn__watched {
   @mixin beforeTablet {
-    padding-right: 19px;
-    padding-left: 19px;
+    // padding-right: 19px;
+    // padding-left: 19px;
   }
 }
 
 .btn__watched:hover,
-.btn__watched:focus,
-.btn__queue:hover,
-.btn__queue:focus {
-  background: $orange;
-  box-sizing: border-box;
-  border-radius: 5px solid rgba(255, 107, 1, 1);
+.btn__queue:hover {
+  background-color: $orange;
+  border-color: $orange;
+  border-radius: 5px;
   color: $white;
+}
+
+.btn__watched:focus-visible,
+.btn__queue:focus-visible {
   border: none;
+  outline: none;
+  box-shadow: 0 0 0 3px $orange;
 }
 
 .about {
@@ -214,7 +219,7 @@ li {
 
 // Стили кнопок, если фильм уже в каком-то из списков
 .in-list {
-  background-color: rgba(255, 107, 8, 0.4);
-  border: none;
+  background-color: rgba(236, 122, 45, 0.6);
+  border-color: rgba(236, 122, 45, 0.6);
   color: $white;
 }
