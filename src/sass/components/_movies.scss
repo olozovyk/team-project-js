@@ -2,10 +2,22 @@ main {
   flex-grow: 1;
 }
 
+ .film{
+  margin-top: 28px;
+  margin-bottom: 40px;
+   @include tablet{
+   margin-top: 50px;
+   margin-bottom: 60px; 
+   }
+   
+}
+
+
 .film__list {
   display: grid;
   grid-template-columns: 1fr;
   gap: 30px;
+  margin: 0 auto;
   @include tablet {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -20,4 +32,27 @@ main {
 
 .film__img-thumb {
   height: 398px;
+  min-width: 280px;
+  margin-bottom: 10px;
+  @include tablet{
+     width: 294px;
+  }
+  @include desktop{
+     width: 274px;
+  }
+}
+
+.film__name{
+font-family: $ffMedium;
+font-size: var(--font-size12);
+line-height: 1.6;
+text-transform: uppercase;
+color: $black;
+}
+
+.film__text{
+font-family: $ffMedium;;
+font-size: var(--font-size12);
+line-height: 1.33;
+color: $orange;
 }
