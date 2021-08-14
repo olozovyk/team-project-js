@@ -1,27 +1,3 @@
-:root {
-  --cubic-function: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-time: 250ms;
-  --font-size12: 12px;
-  --font-size14: 14px;
-  --font-size30: 30px;
-}
-
-%transitionColor {
-  transition-property: color;
-  transition-duration: var(--duration-time);
-  transition-timing-function: var(--cubic-function);
-}
-
-%transitionBackgrColor {
-  transition-property: background-color;
-  transition-duration: var(--duration-time);
-  transition-timing-function: var(--cubic-function);
-}
-
-%transitionTransform {
-  transition: transform 250ms var(--cubic-function), opacity 250ms var(--cubic-function);
-}
-
 .header {
   width: 100%;
   min-height: 230px;
