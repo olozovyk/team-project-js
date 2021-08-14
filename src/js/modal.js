@@ -33,8 +33,11 @@ export function controlModal() {
       return;
     }
 
+    let currentMovie = {};
+
     getMovieById(movieId)
       .then(movie => {
+        currentMovie = movie;
         modalContentEl.innerHTML = movieTemplate(movie);
       })
       .then(() => {
@@ -58,8 +61,15 @@ export function controlModal() {
         controlBtnStyle({ button: modalQueueBtn, list: queueMovies, movieId, listType: 'queue' });
 
         modalWatchedBtn.addEventListener('click', () => {
-          const indexMovie = watchedMovies.indexOf(Number(movieId));
-          if (indexMovie > -1) {
+          let indexMovie = null;
+
+          watchedMovies.forEach((item, idx) => {
+            if (Number(item.id) === Number(movieId)) {
+              indexMovie = idx;
+            }
+          });
+
+          if (indexMovie !== null) {
             watchedMovies.splice(indexMovie, 1);
             localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
             controlBtnStyle({
@@ -70,7 +80,7 @@ export function controlModal() {
             });
             return;
           }
-          watchedMovies.push(Number(movieId));
+          watchedMovies.push(currentMovie);
           localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
           controlBtnStyle({
             button: modalWatchedBtn,
@@ -81,8 +91,15 @@ export function controlModal() {
         });
 
         modalQueueBtn.addEventListener('click', () => {
-          const indexMovie = queueMovies.indexOf(Number(movieId));
-          if (indexMovie > -1) {
+          let indexMovie = null;
+
+          queueMovies.forEach((item, idx) => {
+            if (Number(item.id) === Number(movieId)) {
+              indexMovie = idx;
+            }
+          });
+
+          if (indexMovie !== null) {
             queueMovies.splice(indexMovie, 1);
             localStorage.setItem('queueMovies', JSON.stringify(queueMovies));
             controlBtnStyle({
@@ -93,7 +110,7 @@ export function controlModal() {
             });
             return;
           }
-          queueMovies.push(Number(movieId));
+          queueMovies.push(currentMovie);
           localStorage.setItem('queueMovies', JSON.stringify(queueMovies));
           controlBtnStyle({ button: modalQueueBtn, list: queueMovies, movieId, listType: 'queue' });
         });
@@ -116,12 +133,20 @@ export function controlModal() {
   }
 
   function controlBtnStyle({ button, list, movieId, listType }) {
-    const btnInList = list.includes(movieId);
-    if (btnInList) {
+    let indexMovie = null;
+
+    list.forEach((item, idx) => {
+      if (Number(item.id) === Number(movieId)) {
+        indexMovie = idx;
+      }
+    });
+
+    if (indexMovie !== null) {
       button.classList.add('in-list');
       button.textContent = listType === 'watched' ? 'REMOVE FROM WATCHED' : 'REMOVE FROM QUEUE';
       return;
     }
+
     button.classList.remove('in-list');
     button.textContent = listType === 'watched' ? 'ADD TO WATCHED' : 'ADD TO QUEUE';
   }
