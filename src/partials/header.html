@@ -21,24 +21,22 @@
     </nav>
     <!-- скрыть форму при классе хиден -->
     <div class="header__form--visibel">
-      <div class="header__form--block">
-        <form class="header__form" autocomplete="on">
-          <label class="header__form--subscribe">
-            <input
-              class="header-input"
-              type="text"
-              name="user_text"
-              class="header__form--input"
-              placeholder="Поиск фильмов"
-            />
-          </label>
-          <button class="header__form--button" type="submit">
-            <svg class="header__form--icon" width="12" height="12">
-              <use href="./images/symbol-defs.svg#icon-search"></use>
-            </svg>
-          </button>
-        </form>
-      </div>
+      <form class="header__form" autocomplete="on">
+        <label class="header__form--subscribe">
+          <input
+            class="header-input header__form--input"
+            type="text"
+            name="user_text"
+            placeholder="Поиск фильмов"
+          />
+        </label>
+        <button class="header__form--button" type="submit">
+          <svg class="header__form--icon" width="12" height="12">
+            <use href="./images/symbol-defs.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+
       <!-- скрыть ошибку при классе хиден -->
       <p class="header__notice hidden">
         Search result not successful. Enter the correct movie name and

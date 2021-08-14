@@ -22,12 +22,22 @@
   transition: transform 250ms var(--cubic-function), opacity 250ms var(--cubic-function);
 }
 
-header {
+.header {
   width: 100%;
+  min-height: 230px;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.56);
   background-repeat: no-repeat;
   background-position: center;
+  @include beforeTablet {
+    padding-top: 46px;
+  }
+  @include tablet {
+    padding-top: 41px;
+  }
+  @include desktop {
+    padding-top: 43px;
+  }
 
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url('../images/home1xmob.jpg');
@@ -39,7 +49,7 @@ header {
 }
 
 @include tablet {
-  header {
+  .header {
     text-align: center;
     min-width: 768px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
@@ -52,7 +62,7 @@ header {
   }
 }
 @include desktop {
-  header {
+  .header {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('../images/home1xdesk.jpg');
 
@@ -63,33 +73,40 @@ header {
   }
 }
 
+//library
 .library {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url('../images/libr1xmob.jpg');
-
-  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  header {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url('../images/libr2xmob.jpg');
-  }
-
-  @include tablet {
-    text-align: center;
-    min-width: 768px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url('../images/librtab1x.jpg');
+      url('../images/libr1xmob.jpg');
 
     @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
       background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/librtab2x.jpg');
+        url('../images/libr2xmob.jpg');
+    }
+  }
+
+  @include tablet {
+    .header {
+      text-align: center;
+      min-width: 768px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/librtab1x.jpg');
+
+      @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+          url('../images/librtab2x.jpg');
+      }
     }
   }
   @include desktop {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url('../images/librdes1x.jpg');
+    .header {
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/librdes1x.jpg');
 
-    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56))
-        url('../images/librdes2x.jpg');
+      @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56))
+          url('../images/librdes2x.jpg');
+      }
     }
   }
 }
@@ -99,17 +116,20 @@ header {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  min-height: 230px;
-  padding-bottom: 97px;
-  @include beforeTablet {
-    padding-top: 46px;
-  }
-  @include tablet {
-    padding-top: 41px;
-  }
-  @include desktop {
-    padding-top: 43px;
-  }
+
+  // padding-bottom: 97px;
+  //   @include beforeTablet{
+  //   padding-top: 46px;
+
+  //   }
+  //    @include tablet{
+  //    padding-top: 41px;
+
+  //    }
+  //  @include  desktop{
+  //    padding-top: 43px;
+
+  //  }
 }
 
 .header__menu {
@@ -117,12 +137,11 @@ header {
   align-items: center;
   justify-content: space-between;
   margin-right: auto;
-  @include beforeTablet {
-    padding-bottom: 43px;
-  }
+  margin-bottom: 43px;
+
   @include tablet {
     text-align: center;
-    padding-bottom: 37px;
+    margin-bottom: 37px;
   }
 }
 
@@ -185,21 +204,10 @@ header {
   transform: scaleX(1);
 }
 
+.header__link:hover::after,
 .header__link:focus::after {
   opacity: 1;
   transform: scalex(1);
-}
-
-.header__form--block {
-  position: absolute;
-  left: 20px;
-  top: 113px;
-  @include tablet {
-    left: 216px;
-  }
-  @include desktop {
-    left: 350px;
-  }
 }
 
 .header__form {
@@ -207,16 +215,17 @@ header {
   min-height: 20px;
   position: relative;
   border-bottom: 1px solid $grey;
-
-  margin-right: auto;
+  margin-bottom: 22px;
   font-size: var(--font-size14);
 
-  @include beforeTablet {
-    min-width: 280px;
-  }
   @include tablet {
     width: 336px;
-    margin-left: auto;
+    margin: 0 auto;
+    margin-bottom: 22px;
+  }
+  &:focus,
+  &:hover {
+    border-bottom: bold;
   }
 }
 
@@ -226,7 +235,17 @@ header {
   font-family: $ffRegular;
   font-size: var(--font-size14);
   background-color: transparent;
-  max-width: 280px;
+  width: 100%;
+  outline: none;
+  padding-right: 20px;
+  &::input-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  &:focus::placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
   @include tablet {
     min-width: 336px;
   }
@@ -251,8 +270,7 @@ header {
 //cтили сообщения//
 .header__notice {
   display: flex;
-  position: absolute;
-  top: 155px;
+
   flex-wrap: wrap;
   justify-content: center;
   text-align: left;
@@ -260,25 +278,19 @@ header {
   font-family: $ffRegular;
   color: $red;
   line-height: 1.14;
-  margin: 0 auto;
-  @include beforeTablet {
-    width: 280px;
-  }
+
+  width: 280px;
   @include tablet {
     width: 100%;
-    top: 155px;
     text-align: center;
-    left: 0px;
+    margin: 0 auto;
   }
 }
 
 .header__block--button {
-  display: inline-flex;
-  position: absolute;
-  top: 121px;
-  // right: 21px;
-  left: 50%;
-  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  margin-top: 49px;
 }
 
 .header__list--button {

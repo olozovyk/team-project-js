@@ -22,3 +22,5 @@ getMovies({ page: numberPage })
     refs.movies.innerHTML = templatingOneFilm(films);
   })
   .then(controlModal);
+
+// getMovieById(522478).then(console.log);
