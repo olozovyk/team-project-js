@@ -15,8 +15,8 @@ function onInputSearch(e) {
   if (searchQuery.trim() === '') {
     form.reset();
     return;
-  };
-  
+  }
+
   clearInterface();
 
   getMovies({ query: searchQuery })
@@ -24,6 +24,7 @@ function onInputSearch(e) {
       const arrayOfMovies = movies.map(movie => {
         const filmGenres = genresSet(movie.genreNames);
         const filmDate = dataSet(movie.release_date);
+        console.log(movie.release_date);
         return { ...movie, filmGenres, filmDate };
       });
       return arrayOfMovies;
@@ -32,7 +33,7 @@ function onInputSearch(e) {
       if (movies.length === 0) {
         refs.headerFailureNotice.classList.remove('hidden');
         return;
-      };
+      }
 
       refs.headerFailureNotice.classList.add('hidden');
       cardRender(movies);

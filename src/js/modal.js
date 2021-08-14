@@ -24,6 +24,7 @@ export function controlModal() {
     // openModal(modalEl);
 
     const listItem = event.target.closest('LI');
+    console.log(listItem);
     if (!listItem) {
       return;
     }
