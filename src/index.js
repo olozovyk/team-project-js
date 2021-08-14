@@ -4,6 +4,7 @@ import { getMovies, getMovieById } from './js/fetch';
 import { genresSet, dataSet } from './js/templatingSettings';
 import templatingOneFilm from './templates/templatingOneFilm.hbs';
 import { refs } from './js/refs';
+import './js/pageSwitch';
 import './js/searchQuery';
 import { openModal } from './js/modal';
 
@@ -23,3 +24,4 @@ getMovies({ page: numberPage })
   .then(openModal);
 
 getMovieById(522478).then(console.log);
+

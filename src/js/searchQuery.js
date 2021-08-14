@@ -12,6 +12,11 @@ function onInputSearch(e) {
   const form = e.currentTarget;
   const searchQuery = form.elements.user_text.value;
 
+  if (searchQuery.trim() === '') {
+    form.reset();
+    return;
+  };
+  
   clearInterface();
 
   getMovies({ query: searchQuery })
@@ -23,7 +28,15 @@ function onInputSearch(e) {
       });
       return arrayOfMovies;
     })
-    .then(cardRender)
+    .then(movies => {
+      if (movies.length === 0) {
+        refs.headerFailureNotice.classList.remove('hidden');
+        return;
+      };
+
+      refs.headerFailureNotice.classList.add('hidden');
+      cardRender(movies);
+    })
     .then(openModal)
     .finally(form.reset());
 }
