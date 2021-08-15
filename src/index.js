@@ -7,6 +7,7 @@ import { refs } from './js/refs';
 import './js/pageSwitch';
 import './js/searchQuery';
 import { controlModal } from './js/modal';
+import './js/watched';
 
 let numberPage = 1;
 getMovies({ page: numberPage })

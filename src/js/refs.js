@@ -8,4 +8,6 @@ export const refs = {
   libraryLink: document.querySelector('.js-library'),
   homeLink: document.querySelector('.js-home'),
   header: document.querySelector('.header'),
+  btnWatched: document.querySelector('[type="Watched"]'),
+  btnQueue: document.querySelector('[type="queue"]'),
 };

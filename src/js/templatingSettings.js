@@ -1,10 +1,10 @@
 function genresSet(arreyGenreNames) {
-  if (arreyGenreNames.length <= 3) {    
-    return arreyGenreNames.join(', ');    
-  } else {    
-    const newarrey = arreyGenreNames.slice(0,2);    
-    return newarrey.join(', ') + ', Other';    
-  }  
+  if (arreyGenreNames.length <= 3) {
+    return arreyGenreNames.join(', ');
+  } else {
+    const newarrey = arreyGenreNames.slice(0, 2);
+    return newarrey.join(', ') + ', Other';
+  }
 }
 
 function dataSet(release_date) {
@@ -15,4 +15,13 @@ function dataSet(release_date) {
   }
 }
 
-export { genresSet, dataSet };
+// проверка на целое число в рейтинге
+function voteAverageNew(vote_average) {
+  const x = Number.isInteger(vote_average);
+  if (!x) {
+    return vote_average;
+  }
+  return `${vote_average}.0`;
+}
+
+export { genresSet, dataSet, voteAverageNew };
