@@ -8,6 +8,7 @@ import './js/pageSwitch';
 import './js/searchQuery';
 import { controlModal } from './js/modal';
 import './js/watched';
+import { addCoverDefault } from './js/addCoverDefault';
 
 let numberPage = 1;
 getMovies({ page: numberPage })
@@ -22,6 +23,7 @@ getMovies({ page: numberPage })
   .then(films => {
     refs.movies.innerHTML = templatingOneFilm(films);
   })
+  .then(() => {
+    addCoverDefault(refs.movies);
+  })
   .then(controlModal);
-
-// getMovieById(522478).then(console.log);

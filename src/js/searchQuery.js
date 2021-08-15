@@ -3,6 +3,7 @@ import templatingOneFilm from '../templates/templatingOneFilm.hbs';
 import { refs } from './refs';
 import { dataSet, genresSet } from './templatingSettings';
 import { controlModal } from './modal';
+import { addCoverDefault } from './addCoverDefault';
 
 refs.searchForm.addEventListener('submit', onInputSearch);
 
@@ -24,7 +25,6 @@ function onInputSearch(e) {
       const arrayOfMovies = movies.map(movie => {
         const filmGenres = genresSet(movie.genreNames);
         const filmDate = dataSet(movie.release_date);
-        console.log(movie.release_date);
         return { ...movie, filmGenres, filmDate };
       });
       return arrayOfMovies;
@@ -37,6 +37,9 @@ function onInputSearch(e) {
 
       refs.headerFailureNotice.classList.add('hidden');
       cardRender(movies);
+    })
+    .then(() => {
+      addCoverDefault(refs.filmList);
     })
     .then(controlModal)
     .finally(form.reset());
