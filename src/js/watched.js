@@ -7,12 +7,17 @@ refs.btnWatched.addEventListener('click', onBtnMyLibrary);
 refs.btnQueue.addEventListener('click', onBtnQueue);
 
 function onBtnMyLibrary(event) {
+  if (refs.btnQueue.classList.contains('btn-is-active')) {
+    addBackGrOrang(refs.btnQueue, refs.btnWatched);
+  }
+  refs.btnWatched.classList.add('btn-is-active');
   const saveMovies = localStorage.getItem('watchedMovies');
   const parseMovies = JSON.parse(saveMovies);
   getLibraryMovies(parseMovies);
 }
 
 function onBtnQueue(e) {
+  addBackGrOrang(refs.btnWatched, refs.btnQueue);
   const saveMovies = localStorage.getItem('queueMovies');
   const parseMovies = JSON.parse(saveMovies);
   getLibraryMovies(parseMovies);
@@ -28,3 +33,8 @@ const getLibraryMovies = arg => {
   });
   return (refs.movies.innerHTML = templateLibrary(filmsArr));
 };
+
+function addBackGrOrang(remove, add) {
+  remove.classList.remove('btn-is-active');
+  add.classList.add('btn-is-active');
+}
