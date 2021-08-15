@@ -14,6 +14,7 @@ export function controlModal() {
 
   openModalBtnEl.addEventListener('click', onClickOpenModal);
   closeModalBtnEL.addEventListener('click', onClickCloseModal);
+  modalEl.addEventListener('click', onClickBackdropModal);
 
   function onClickOpenModal(event) {
     event.preventDefault();
@@ -123,13 +124,33 @@ export function controlModal() {
     modalEl.classList.remove('backdrop__hidden');
     document.body.style.overflow = 'hidden';
     document.body.style.width = 'calc(100% - 15px)';
+    window.addEventListener('keydown', onKeydownEscape);
   }
 
-  function onClickCloseModal(event) {
+  function onKeydownEscape(event) {
+    if (event.code !== 'Escape') {
+      return;
+    }
+    closeModal();
+  }
+
+  function onClickCloseModal() {
+    closeModal();
+  }
+
+  function closeModal() {
     modalEl.classList.add('backdrop__hidden');
     modalContentEl.innerHTML = '';
     document.body.style.overflow = 'auto';
     document.body.style.width = '100%';
+    window.removeEventListener('keydown', onKeydownEscape);
+  }
+
+  function onClickBackdropModal(event) {
+    if (event.target !== modalEl) {
+      return;
+    }
+    closeModal();
   }
 
   function controlBtnStyle({ button, list, movieId, listType }) {
