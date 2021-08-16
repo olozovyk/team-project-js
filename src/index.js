@@ -10,6 +10,7 @@ import './js/pageSwitch';
 import './js/searchQuery';
 import { controlModal } from './js/modal';
 import './js/watched';
+import { addCoverDefault } from './js/addCoverDefault';
 
 let page = sessionStorage.getItem('mainPage') || 1;
 
@@ -21,6 +22,7 @@ async function showMovies(numberPage) {
     return { ...film, filmGenres, filmDate };
   });
   refs.movies.innerHTML = templatingOneFilm(filmsArr);
+  addCoverDefault(refs.movies);
   controlModal();
   return data.total_results;
 }

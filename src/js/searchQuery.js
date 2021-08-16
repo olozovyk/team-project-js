@@ -5,6 +5,7 @@ import templatingOneFilm from '../templates/templatingOneFilm.hbs';
 import { refs } from './refs';
 import { dataSet, genresSet } from './templatingSettings';
 import { controlModal } from './modal';
+import { addCoverDefault } from './addCoverDefault';
 
 refs.searchForm.addEventListener('submit', onInputSearch);
 
@@ -59,10 +60,12 @@ async function showMovies({ page, query } = {}) {
 
   refs.headerFailureNotice.classList.add('hidden');
   cardRender(arrayOfMovies);
+  addCoverDefault(refs.filmList);
   controlModal();
   refs.searchForm.reset();
 
   return data.total_results;
+
 }
 
 function cardRender(movies) {
