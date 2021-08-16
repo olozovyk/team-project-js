@@ -9,13 +9,14 @@ import { addCoverDefault } from './addCoverDefault';
 
 refs.searchForm.addEventListener('submit', onInputSearch);
 
-let page = sessionStorage.getItem('searchPageNumber') || 1;
+// let page = sessionStorage.getItem('searchPageNumber') || 1;
+let page = 1;
 let searchQuery;
 
 function onInputSearch(e) {
   e.preventDefault();
 
-  sessionStorage.setItem('mainPage', 1);
+  sessionStorage.removeItem('mainPage');
   const form = e.currentTarget;
   searchQuery = form.elements.user_text.value;
 
@@ -37,7 +38,7 @@ function onInputSearch(e) {
       page,
     });
     instance.on('beforeMove', function (eventData) {
-      sessionStorage.setItem('mainPage', eventData.page);
+      // sessionStorage.setItem('searchPageNumber', eventData.page);
       refs.movies.innerHTML = '';
       return showMovies({ page: eventData.page, query: searchQuery });
     });
@@ -65,7 +66,6 @@ async function showMovies({ page, query } = {}) {
   refs.searchForm.reset();
 
   return data.total_results;
-
 }
 
 function cardRender(movies) {
