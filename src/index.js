@@ -12,7 +12,7 @@ import { controlModal } from './js/modal';
 import './js/watched';
 import { addCoverDefault } from './js/addCoverDefault';
 
-let page = sessionStorage.getItem('mainPage') || 1;
+let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
 async function showMovies(numberPage) {
   const data = await getMovies({ page: numberPage });
@@ -35,6 +35,7 @@ async function makePagination(numberPage) {
     itemsPerPage: 20,
     centerAlign: true,
     page: numberPage,
+    // currentPage: numberPage,
   });
   instance.on('beforeMove', function (eventData) {
     sessionStorage.setItem('mainPage', eventData.page);
