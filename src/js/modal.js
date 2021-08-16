@@ -1,6 +1,7 @@
 import { getMovieById } from './fetch';
 import movieTemplate from '../../src/templates/modal.hbs';
 import { refs } from './refs';
+import { markupQueue, markupWatched } from './watched';
 import { addCoverDefault } from './addCoverDefault';
 
 const modalContentEl = document.querySelector('#modal-content');
@@ -78,6 +79,9 @@ export function controlModal() {
           if (indexMovie !== null) {
             watchedMovies.splice(indexMovie, 1);
             localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
+            if (sessionStorage.getItem('pageWatched') === 'watched') {
+              markupWatched();
+            }
             controlBtnStyle({
               button: modalWatchedBtn,
               list: watchedMovies,
@@ -88,6 +92,9 @@ export function controlModal() {
           }
           watchedMovies.push(currentMovie);
           localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
+          if (sessionStorage.getItem('pageWatched') === 'watched') {
+            markupWatched();
+          }
           controlBtnStyle({
             button: modalWatchedBtn,
             list: watchedMovies,
@@ -108,16 +115,24 @@ export function controlModal() {
           if (indexMovie !== null) {
             queueMovies.splice(indexMovie, 1);
             localStorage.setItem('queueMovies', JSON.stringify(queueMovies));
+            if (sessionStorage.getItem('pageQueue') === 'queue') {
+              markupQueue();
+            }
             controlBtnStyle({
               button: modalQueueBtn,
               list: queueMovies,
               movieId,
               listType: 'queue',
             });
+
             return;
           }
+
           queueMovies.push(currentMovie);
           localStorage.setItem('queueMovies', JSON.stringify(queueMovies));
+          if (sessionStorage.getItem('pageQueue') === 'queue') {
+            markupQueue();
+          }
           controlBtnStyle({ button: modalQueueBtn, list: queueMovies, movieId, listType: 'queue' });
         });
       });
