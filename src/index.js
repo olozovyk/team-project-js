@@ -12,9 +12,14 @@ import { controlModal } from './js/modal';
 import './js/watched';
 import { addCoverDefault } from './js/addCoverDefault';
 
+let libraryKey;
+libraryKey = sessionStorage.getItem('pageLibrary') === 'library';
 let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
 async function showMovies(numberPage) {
+  if (libraryKey) {
+    return;
+  }
   const data = await getMovies({ page: numberPage });
   const filmsArr = data.movies.map(film => {
     const filmGenres = genresSet(film.genreNames);
@@ -43,4 +48,10 @@ async function makePagination(numberPage) {
   });
 }
 
+// makePagination(page);
+
+// console.log(libraryKey);
 makePagination(page);
+// if (!libraryKey) {
+//   makePagination(page);
+// }

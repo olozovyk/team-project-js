@@ -1,12 +1,13 @@
 import { refs } from './refs';
 
+refs.logo.addEventListener('click', onLogo);
 refs.libraryLink.addEventListener('click', onLibraryClick);
 refs.homeLink.addEventListener('click', onHomeClick);
 
 // сохраняет класс LIBRARY при перезагрузке страници LIBRARY
 (function () {
-  if (localStorage.getItem('page') === 'library') {
-    localStorage.setItem('page', 'library');
+  if (sessionStorage.getItem('pageLibrary') === 'library') {
+    sessionStorage.setItem('pageLibrary', 'library');
     refs.header.classList.add('library');
     keepLibraryBtnStyle();
     return;
@@ -19,12 +20,16 @@ function onLibraryClick() {
 }
 
 function pageClassSetter() {
-  localStorage.setItem('page', 'library');
+  sessionStorage.setItem('pageLibrary', 'library');
   refs.header.classList.add('library');
 }
 
 function onHomeClick() {
-  localStorage.removeItem('page');
+  sessionStorage.removeItem('pageLibrary');
+  sessionStorage.removeItem('mainPage');
+  sessionStorage.getItem('pageWatched')
+    ? sessionStorage.removeItem('pageWatched')
+    : sessionStorage.removeItem('pageQueue');
   refs.header.classList.remove('library');
   refs.homeLink.classList.add('header__link--current');
   refs.libraryLink.classList.remove('header__link--current');
@@ -37,4 +42,8 @@ function keepLibraryBtnStyle() {
   refs.libraryLink.classList.add('header__link--current');
   refs.headerLibraryButtons.classList.remove('hidden');
   refs.headerSearchBlock.classList.add('hidden');
+}
+
+function onLogo(e) {
+  sessionStorage.clear();
 }
