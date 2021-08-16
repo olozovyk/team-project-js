@@ -1,6 +1,7 @@
 import { getMovieById } from './fetch';
 import movieTemplate from '../../src/templates/modal.hbs';
 import { refs } from './refs';
+import { addCoverDefault } from './addCoverDefault';
 
 const modalContentEl = document.querySelector('#modal-content');
 
@@ -25,7 +26,6 @@ export function controlModal() {
     // openModal(modalEl);
 
     const listItem = event.target.closest('LI');
-    console.log(listItem);
     if (!listItem) {
       return;
     }
@@ -41,6 +41,9 @@ export function controlModal() {
       .then(movie => {
         currentMovie = movie;
         modalContentEl.innerHTML = movieTemplate(movie);
+      })
+      .then(() => {
+        addCoverDefault(modalContentEl);
       })
       .then(() => {
         openModal(modalEl);
