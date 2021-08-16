@@ -11,16 +11,18 @@ async function getMovies({ page = 1, query } = {}) {
       const data = await axios(
         `${BASE_URL}search/movie?api_key=${API_KEY}&language=ru&page=${page}&query=${query}`,
       );
-
-      return addGenresAndPictures(data, genres);
+      const obj = {};
+      obj.movies = addGenresAndPictures(data, genres);
+      obj.total_results = data.data.total_results;
+      return obj;
     }
     const data = await axios(
       `${BASE_URL}trending/movie/week?api_key=${API_KEY}&language=ru&page=${page}`,
     );
     const obj = {};
     obj.movies = addGenresAndPictures(data, genres);
-    obj.page = data.data.page;
-    obj.total_pages = data.data.total_pages;
+    // obj.page = data.data.page;
+    // obj.total_pages = data.data.total_pages;
     obj.total_results = data.data.total_results;
     return obj;
   } catch (error) {

@@ -10,4 +10,5 @@ export const refs = {
   header: document.querySelector('.header'),
   btnWatched: document.querySelector('[type="Watched"]'),
   btnQueue: document.querySelector('[type="queue"]'),
+  pagination: document.querySelector('.js-pagination'),
 };

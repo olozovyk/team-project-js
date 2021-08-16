@@ -11,12 +11,7 @@ import './js/searchQuery';
 import { controlModal } from './js/modal';
 import './js/watched';
 
-let page = 1;
-try {
-  page = sessionStorage.getItem('mainPage1') || 1;
-} catch (error) {
-  console.log(error);
-}
+let page = sessionStorage.getItem('mainPage') || 1;
 
 async function showMovies(numberPage) {
   const data = await getMovies({ page: numberPage });
@@ -32,8 +27,8 @@ async function showMovies(numberPage) {
 
 async function makePagination(numberPage) {
   const total = await showMovies(numberPage);
-  const containerMovies = document.querySelector('.js-pagination');
-  const instance = new Pagination(containerMovies, {
+  const paginationEl = document.querySelector('.js-pagination');
+  const instance = new Pagination(paginationEl, {
     totalItems: total,
     itemsPerPage: 20,
     centerAlign: true,
