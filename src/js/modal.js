@@ -40,6 +40,7 @@ export function controlModal() {
     getMovieById(movieId)
       .then(movie => {
         currentMovie = movie;
+        modalContentEl.innerHTML = '';
         modalContentEl.innerHTML = movieTemplate(movie);
       })
       .then(() => {
@@ -144,7 +145,6 @@ export function controlModal() {
 
   function closeModal() {
     modalEl.classList.add('backdrop__hidden');
-    modalContentEl.innerHTML = '';
     document.body.style.overflow = 'auto';
     document.body.style.width = '100%';
     window.removeEventListener('keydown', onKeydownEscape);
