@@ -2,35 +2,31 @@
   <img class="film-img" src="{{poster}}" alt="{{title}}" />
 </div>
 
-<div class="description-film">
-  <h2 class="film__name">{{title}}</h2>
-  <div class="film">
-    <div class="grade-film">
-      <ul class="grade-list">
-        <li class="grade-item">Vote / Votes</li>
-        <li class="grade-item">Popularity</li>
-        <li class="grade-item">Original Title</li>
-        <li class="grade-item">Genre</li>
+<div class="film-modal">
+  <h2 class="film-modal__name">{{title}}</h2>
+  <div class="film-modal__box">
+    <div class="film-grade">
+      <ul class="film-grade__list">
+        <li class="film-grade__item">Vote / Votes</li>
+        <li class="film-grade__item">Popularity</li>
+        <li class="film-grade__item">Original Title</li>
+        <li class="film-grade__item">Genre</li>
       </ul>
     </div>
-    <div class="response-film">
-      <ul class="response-list">
-        <li class="response-item"><span class="grade">{{vote_average}}</span> / {{vote_count}}</li>
-        <li class="response-item">{{popularity}}</li>
-        <li class="response-item">{{original_title}}</li>
-        <li class="response-item">{{#each genres}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</li>
+    <div class="film-response">
+      <ul class="film-response__list">
+        <li class="film-response__item"><span class="grade">{{vote_average}}</span> / {{vote_count}}</li>
+        <li class="film-response__item">{{popularity}}</li>
+        <li class="film-response__item">{{original_title}}</li>
+        <li class="film-response__item">{{#each genres}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</li>
       </ul>
     </div>
   </div>
 
-  <div>
-    <h3 class="about">ABOUT</h3>
-    <p class="description">
-      {{overview}}
-    </p>
-  </div>
+  <h3 class="film-modal__about">ABOUT</h3>
+  <p class="film-modal__description">{{overview}}</p>
 
-  <div class="button">
+  <div class="film-modal__button">
     <button id='modal-watched-btn' class="btn__watched">ADD TO WATCHED</button>
     <button id='modal-queue-btn' class="btn__queue">ADD TO QUEUE</button>
   </div>
