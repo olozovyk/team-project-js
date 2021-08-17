@@ -46,7 +46,7 @@ function keepLibraryBtnStyle() {
 }
 
 function resetToHomePageStyle() {
-sessionStorage.removeItem('pageLibrary');
+  sessionStorage.removeItem('pageLibrary');
   sessionStorage.removeItem('mainPage');
   sessionStorage.getItem('pageWatched')
     ? sessionStorage.removeItem('pageWatched')
@@ -56,4 +56,5 @@ sessionStorage.removeItem('pageLibrary');
   refs.libraryLink.classList.remove('header__link--current');
   refs.headerLibraryButtons.classList.add('hidden');
   refs.headerSearchBlock.classList.remove('hidden');
+  refs.headerFailureNotice.classList.add('hidden');
 }
