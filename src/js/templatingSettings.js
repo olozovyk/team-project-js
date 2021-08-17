@@ -3,7 +3,7 @@ function genresSet(arreyGenreNames) {
     return arreyGenreNames.join(', ');
   } else {
     const newarrey = arreyGenreNames.slice(0, 2);
-    return newarrey.join(', ') + ', Other';
+    return newarrey.join(', ') + ' и другие';
   }
 }
 

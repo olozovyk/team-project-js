@@ -4,114 +4,147 @@ li {
 }
 
 .modal {
+  position: absolute;
   background: $white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  min-width: 280px;
 
-  //   display: flex;
-  flex-direction: column;
-  position: absolute;
-  // margin-left: 20px;
-  // margin-right: 20px;
-  min-height: 958px;
+  padding: 48px 20px 40px 20px;
 
   @include tablet {
     width: 618px;
-    min-height: 562px;
-    // margin-left: 28px;
-    // margin-right: 30px;
+    padding: 42px 28px 42px 28px;
   }
 
   @include desktop {
     width: 882px;
-    min-height: 568px;
-    padding: 59px 30px 40px;
+    padding: 50px 30px 50px 40px;
   }
-}
 
-.description-film {
-  display: flex;
-  flex-direction: column;
-  // margin-left: 30px;
-}
+  &__close {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    cursor: pointer;
+    background-color: transparent;
 
-.modal__close {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  cursor: pointer;
-  background-color: transparent;
+    width: 30px;
+    height: 30px;
 
-  &:hover .modal__close-icon,
-  &:focus .modal__close-icon {
-    stroke: $orange;
+    &:hover .modal__close-icon,
+    &:focus .modal__close-icon {
+      stroke: $orange;
+    }
   }
-}
 
-.modal__close-icon {
-  right: 10px;
-  bottom: 90%;
-  stroke: $black;
+  &__close-icon {
+    stroke: $black;
 
-  // cursor: pointer;
-
-  // margin-bottom: 10px;
-  // margin-left: 10px;
-
-  @include desktop {
-    margin-bottom: 19px;
-    margin-left: 22px;
+    @include desktop {
+      margin-bottom: 10px;
+      margin-left: 10px;
+    }
   }
-}
-
-.modal-film {
-  display: flex;
 }
 
 .cover-film {
-  width: 240px;
-  height: 568px;
-  margin-right: 30px;
+  min-width: 240px;
+  margin-bottom: 30px;
+  border-radius: 5px;
 
   @include tablet {
-    width: 264px;
+    min-width: 264px;
+    margin-bottom: 0px;
+    margin-right: 32px;
   }
 
   @include desktop {
-    height: 594px;
-    width: 396px;
+    max-width: 396px;
+    margin-right: 30px;
   }
 }
 
 .film-img {
+  display: block;
   object-fit: contain;
+  border-radius: 5px;
 }
 
-// .name-film {
-//   margin: 30px 0 20px 0;
+.modal-film {
+  @include tablet {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+.film-modal {
+  &__name {
+    font-family: $ffMedium;
+    font-size: 20px;
+    line-height: 1.17;
+    color: $black;
+    text-transform: uppercase;
 
-//   @include tablet {
-//     margin: 42px 0 20px 0;
-//   }
+    margin-bottom: 20px;
 
-//   @include desktop {
-//     margin: 59px 172px 20px 30px;
-//   }
-// }
+    @include desktop {
+      font-size: 30px;
+    }
+  }
 
+  &__about {
+    margin-bottom: 10px;
 
-.grade-film {
-  margin-right: 85px;
+    font-family: $ffMedium;
+    font-size: 12px;
+    line-height: 1.33;
+    color: $black;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    margin-bottom: 20px;
+
+    font-family: $ffMedium;
+    font-size: 12px;
+    line-height: 1.67;
+    color: $black;
+  }
+
+  &__button {
+    display: flex;
+  }
 }
 
-.grade-list {
-  color: $lightGrey;
-  margin-bottom: 20px;
-}
+.film-grade {
+  &__list {
+    color: $black;
+    margin-bottom: 20px;
+  }
 
-.grade-item:not(:last-child) {
-  padding-bottom: 10px;
+  &__item {
+    display: flex;
+  }
+
+  &__item--uppercase {
+    text-transform: uppercase;
+  }
+
+  &__item:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &__item-static {
+    width: 69px;
+    margin-right: 40px;
+    color: $lightGrey;
+    flex-shrink: 0;
+    text-transform: none;
+    @include desktop {
+      margin-right: 85px;
+    }
+  }
 }
 
 .grade {
@@ -121,64 +154,34 @@ li {
   padding: 1px 10px;
 }
 
-.response-item {
-  padding-bottom: 10px;
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(1, 1, 1, 0.5);
-  opacity: 1;
-}
-
-.backdrop__hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-// .backdrop__hidden .modal {
-//   transform: scale(1.1) translate(-50%, -50%);
-// }
-
-.button {
-  margin-top: 20px;
+.btn__watched {
+  margin-right: 15px;
+  @include desktop {
+    margin-right: 15px;
+  }
 }
 
 .btn__watched,
 .btn__queue {
   cursor: pointer;
-  // width: 113px;
-  // height: 47px;
+  width: 112px;
+  min-height: 44px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   @include tablet {
-    // width: 125px;
-    // height: 44px;
+    width: 125px;
   }
 
   @include desktop {
-    padding: 14px 18px;
+    width: 136px;
   }
 
   background-color: $white;
   border: 1px solid $black;
   border-radius: 5px;
 
-  &:last-child {
-    margin-left: 15px;
-  }
-
   transition: background-color 150ms linear, color 100ms linear;
-}
-
-.btn__watched {
-  @mixin beforeTablet {
-    // padding-right: 19px;
-    // padding-left: 19px;
-  }
 }
 
 .btn__watched:hover,
@@ -196,20 +199,21 @@ li {
   box-shadow: 0 0 0 3px $orange;
 }
 
-.about {
-  margin-bottom: 10px;
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(1, 1, 1, 0.5);
+  opacity: 1;
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.description {
-  width: 240px;
-
-  @include tablet {
-    width: 264px;
-  }
-
-  @include desktop {
-    width: 396px;
-  }
+.backdrop__hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 // Стили кнопок, если фильм уже в каком-то из списков
