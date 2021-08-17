@@ -1,4 +1,5 @@
 import { refs } from './refs';
+import makePaginationFn from '../index';
 
 refs.logo.addEventListener('click', onLogo);
 refs.libraryLink.addEventListener('click', onLibraryClick);
@@ -24,7 +25,27 @@ function pageClassSetter() {
   refs.header.classList.add('library');
 }
 
-function onHomeClick() {
+function onHomeClick(e) {
+  e.preventDefault();  
+  resetToHomePageStyle();
+  makePaginationFn(1);
+}
+
+function onLogo(e) {
+  e.preventDefault();
+  sessionStorage.clear();
+  resetToHomePageStyle();
+  makePaginationFn(1);
+}
+
+function keepLibraryBtnStyle() {
+  refs.homeLink.classList.remove('header__link--current');
+  refs.libraryLink.classList.add('header__link--current');
+  refs.headerLibraryButtons.classList.remove('hidden');
+  refs.headerSearchBlock.classList.add('hidden');
+}
+
+function resetToHomePageStyle() {
   sessionStorage.removeItem('pageLibrary');
   sessionStorage.removeItem('mainPage');
   sessionStorage.getItem('pageWatched')
@@ -35,15 +56,5 @@ function onHomeClick() {
   refs.libraryLink.classList.remove('header__link--current');
   refs.headerLibraryButtons.classList.add('hidden');
   refs.headerSearchBlock.classList.remove('hidden');
-}
-
-function keepLibraryBtnStyle() {
-  refs.homeLink.classList.remove('header__link--current');
-  refs.libraryLink.classList.add('header__link--current');
-  refs.headerLibraryButtons.classList.remove('hidden');
-  refs.headerSearchBlock.classList.add('hidden');
-}
-
-function onLogo(e) {
-  sessionStorage.clear();
+  refs.headerFailureNotice.classList.add('hidden');
 }
