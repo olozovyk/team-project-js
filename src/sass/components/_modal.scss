@@ -127,6 +127,10 @@ li {
     display: flex;
   }
 
+  &__item--uppercase {
+    text-transform: uppercase;
+  }
+
   &__item:not(:last-child) {
     margin-bottom: 10px;
   }
@@ -136,6 +140,7 @@ li {
     margin-right: 40px;
     color: $lightGrey;
     flex-shrink: 0;
+    text-transform: none;
     @include desktop {
       margin-right: 85px;
     }
