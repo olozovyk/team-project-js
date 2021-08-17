@@ -64,8 +64,8 @@ function markupQueue() {
 }
 
 // разметка watched
-const watchedPage = Number(sessionStorage.getItem('watchedPage')) || 1;
-console.log(watchedPage);
+// const watchedPage = Number(sessionStorage.getItem('watchedPage')) || 1;
+// console.log(watchedPage);
 function markupWatched(page) {
   const numbersMovies = 3;
   console.log(page);
@@ -102,6 +102,13 @@ function markupWatched(page) {
       });
     }
     renderPaginationLibrary(defaultPage);
+    if (arrPagination.length === 0) {
+      defaultPage--;
+      if (defaultPage < 1) {
+        defaultPage = 1;
+      }
+      markupWatched(defaultPage);
+    }
   } catch (error) {
     console.log(error);
   }
