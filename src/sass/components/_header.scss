@@ -236,7 +236,13 @@
   cursor: pointer;
   background: transparent;
 }
-
+.header__form--icon {
+  transition: fill, transform .3s;
+  &:hover {
+    fill: #FF6B08;
+    transform: scale(1.3);
+  }
+}
 //cтили сообщения//
 .header__notice {
   display: flex;

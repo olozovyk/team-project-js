@@ -9,8 +9,12 @@ li {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: opacity, transform 1s;
+  opacity: 1;
+  flex-direction: column;
+  position: absolute;
+  min-height: 958px;
   min-width: 280px;
-
   padding: 48px 20px 40px 20px;
 
   @include tablet {
@@ -154,11 +158,39 @@ li {
   padding: 1px 10px;
 }
 
+.response-item {
+  padding-bottom: 10px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(1, 1, 1, 0.5);
+  opacity: 1;
+  transition: .3s;
+}
+
+.backdrop__hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0px, -100%);
+  .modal {
+    transform: translate(-50%, 100%);
+  }
+}
+
+.button {
+  margin-top: 20px;
+
 .btn__watched {
   margin-right: 15px;
   @include desktop {
     margin-right: 15px;
   }
+
 }
 
 .btn__watched,
