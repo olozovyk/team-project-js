@@ -4,24 +4,24 @@
 
 <div class="film-modal">
   <h2 class="film-modal__name">{{title}}</h2>
-  <div class="film-modal__box">
-    <div class="film-grade">
-      <ul class="film-grade__list">
-        <li class="film-grade__item">Vote / Votes</li>
-        <li class="film-grade__item">Popularity</li>
-        <li class="film-grade__item">Original Title</li>
-        <li class="film-grade__item">Genre</li>
-      </ul>
-    </div>
-    <div class="film-response">
-      <ul class="film-response__list">
-        <li class="film-response__item"><span class="grade">{{vote_average}}</span> / {{vote_count}}</li>
-        <li class="film-response__item">{{popularity}}</li>
-        <li class="film-response__item">{{original_title}}</li>
-        <li class="film-response__item">{{#each genres}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</li>
-      </ul>
-    </div>
-  </div>
+  <ul class="film-grade__list">
+    <li class="film-grade__item">
+      <span class="film-grade__item-static">Vote / Votes</span><span class="grade">{{vote_average}}</span> /
+      {{vote_count}}
+    </li>
+
+    <li class="film-grade__item">
+      <span class="film-grade__item-static">Popularity</span>{{popularity}}
+    </li>
+
+    <li class="film-grade__item">
+      <span class="film-grade__item-static">Original Title</span>{{original_title}}
+    </li>
+
+    <li class="film-grade__item">
+      <span class="film-grade__item-static">Genre</span>{{#each genres}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+    </li>
+  </ul>
 
   <h3 class="film-modal__about">ABOUT</h3>
   <p class="film-modal__description">{{overview}}</p>
