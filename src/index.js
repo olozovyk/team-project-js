@@ -32,7 +32,7 @@ async function showMovies(numberPage) {
   return data.total_results;
 }
 
-async function makePagination(numberPage) {
+export default async function makePagination(numberPage) {
   const total = await showMovies(numberPage);
   const paginationEl = document.querySelector('.js-pagination');
   const instance = new Pagination(paginationEl, {

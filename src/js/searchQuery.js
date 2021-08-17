@@ -56,6 +56,7 @@ async function showMovies({ page, query } = {}) {
   });
   if (arrayOfMovies.length === 0) {
     refs.headerFailureNotice.classList.remove('hidden');
+    refs.searchForm.reset();
     return;
   }
 

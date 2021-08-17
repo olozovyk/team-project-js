@@ -1,4 +1,5 @@
 import { refs } from './refs';
+import makePaginationFn from '../index';
 
 refs.logo.addEventListener('click', onLogo);
 refs.libraryLink.addEventListener('click', onLibraryClick);
@@ -24,17 +25,17 @@ function pageClassSetter() {
   refs.header.classList.add('library');
 }
 
-function onHomeClick() {
-  sessionStorage.removeItem('pageLibrary');
-  sessionStorage.removeItem('mainPage');
-  sessionStorage.getItem('pageWatched')
-    ? sessionStorage.removeItem('pageWatched')
-    : sessionStorage.removeItem('pageQueue');
-  refs.header.classList.remove('library');
-  refs.homeLink.classList.add('header__link--current');
-  refs.libraryLink.classList.remove('header__link--current');
-  refs.headerLibraryButtons.classList.add('hidden');
-  refs.headerSearchBlock.classList.remove('hidden');
+function onHomeClick(e) {
+  e.preventDefault();  
+  resetToHomePageStyle();
+  makePaginationFn(1);
+}
+
+function onLogo(e) {
+  e.preventDefault();
+  sessionStorage.clear();
+  resetToHomePageStyle();
+  makePaginationFn(1);
 }
 
 function keepLibraryBtnStyle() {
@@ -44,6 +45,15 @@ function keepLibraryBtnStyle() {
   refs.headerSearchBlock.classList.add('hidden');
 }
 
-function onLogo(e) {
-  sessionStorage.clear();
+function resetToHomePageStyle() {
+sessionStorage.removeItem('pageLibrary');
+  sessionStorage.removeItem('mainPage');
+  sessionStorage.getItem('pageWatched')
+    ? sessionStorage.removeItem('pageWatched')
+    : sessionStorage.removeItem('pageQueue');
+  refs.header.classList.remove('library');
+  refs.homeLink.classList.add('header__link--current');
+  refs.libraryLink.classList.remove('header__link--current');
+  refs.headerLibraryButtons.classList.add('hidden');
+  refs.headerSearchBlock.classList.remove('hidden');
 }
