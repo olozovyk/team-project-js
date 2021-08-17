@@ -80,7 +80,7 @@ export function controlModal() {
             watchedMovies.splice(indexMovie, 1);
             localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
             if (sessionStorage.getItem('pageWatched') === 'watched') {
-              markupWatched();
+              markupWatched(Number(sessionStorage.getItem('watchedPage')));
             }
             controlBtnStyle({
               button: modalWatchedBtn,
@@ -93,7 +93,7 @@ export function controlModal() {
           watchedMovies.push(currentMovie);
           localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
           if (sessionStorage.getItem('pageWatched') === 'watched') {
-            markupWatched();
+            markupWatched(Number(sessionStorage.getItem('watchedPage')));
           }
           controlBtnStyle({
             button: modalWatchedBtn,
