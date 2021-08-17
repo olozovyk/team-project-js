@@ -8,6 +8,10 @@ refs.btnWatched.addEventListener('click', onBtnMyLibrary);
 refs.btnQueue.addEventListener('click', onBtnQueue);
 
 function onBtnMyLibrary(event) {
+  const keyAvailability = localStorage.getItem('watchedMovies') !== null;
+  if (!keyAvailability) {
+    localStorage.setItem('watchedMovies', '[]');
+  }
   if (refs.btnQueue.classList.contains('btn-is-active')) {
     addBackGrOrang(refs.btnQueue, refs.btnWatched);
   }
@@ -22,6 +26,11 @@ function onBtnMyLibrary(event) {
 }
 
 function onBtnQueue(e) {
+  const keyAvailability = localStorage.getItem('queueMovies') !== null;
+  if (!keyAvailability) {
+    localStorage.setItem('queueMovies', '[]');
+  }
+
   addBackGrOrang(refs.btnWatched, refs.btnQueue);
   markupQueue();
 
