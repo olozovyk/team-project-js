@@ -38,6 +38,7 @@ export default async function makePagination(numberPage) {
   const instance = new Pagination(paginationEl, {
     totalItems: total,
     itemsPerPage: 20,
+    visiblePages: 5,
     centerAlign: true,
     page: numberPage,
     // currentPage: numberPage,
