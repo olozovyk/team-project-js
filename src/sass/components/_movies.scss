@@ -29,16 +29,25 @@ main {
 }
 
 .film__img-thumb {
-  height: 398px;
+  //height: 398px;
+  height: 126vw;
   min-width: 274px;
   margin-bottom: 10px;
   border-radius: 5px;
   overflow: hidden;
   @include tablet {
     width: 294px;
+    height: 398px;
+
   }
   @include desktop {
     width: 274px;
+  }
+  img {
+    object-fit: cover;
+    @include tablet {
+      object-fit: fill;
+    }
   }
 }
 
