@@ -1,5 +1,6 @@
 export const refs = {
   movies: document.querySelector('#movies'),
+  containerFilm: document.querySelector('#container-film'),
   filmList: document.querySelector('.film__list'),
   searchForm: document.querySelector('.header__form'),
   headerSearchBlock: document.querySelector('.header__form--visibel'),

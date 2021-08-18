@@ -22,11 +22,12 @@ function onLibraryClick() {
 
 function pageClassSetter() {
   sessionStorage.setItem('pageLibrary', 'library');
+  sessionStorage.setItem('pageWatched', 'watched');
   refs.header.classList.add('library');
 }
 
 function onHomeClick(e) {
-  e.preventDefault();  
+  e.preventDefault();
   resetToHomePageStyle();
   makePaginationFn(1);
 }

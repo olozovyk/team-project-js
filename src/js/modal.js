@@ -80,7 +80,7 @@ export function controlModal() {
             watchedMovies.splice(indexMovie, 1);
             localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
             if (sessionStorage.getItem('pageWatched') === 'watched') {
-              markupWatched();
+              markupWatched(Number(sessionStorage.getItem('watchedPage')));
             }
             controlBtnStyle({
               button: modalWatchedBtn,
@@ -93,7 +93,7 @@ export function controlModal() {
           watchedMovies.push(currentMovie);
           localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
           if (sessionStorage.getItem('pageWatched') === 'watched') {
-            markupWatched();
+            markupWatched(Number(sessionStorage.getItem('watchedPage')));
           }
           controlBtnStyle({
             button: modalWatchedBtn,
@@ -116,7 +116,7 @@ export function controlModal() {
             queueMovies.splice(indexMovie, 1);
             localStorage.setItem('queueMovies', JSON.stringify(queueMovies));
             if (sessionStorage.getItem('pageQueue') === 'queue') {
-              markupQueue();
+              markupQueue(Number(sessionStorage.getItem('queueMovies')));
             }
             controlBtnStyle({
               button: modalQueueBtn,
@@ -124,14 +124,13 @@ export function controlModal() {
               movieId,
               listType: 'queue',
             });
-
             return;
           }
 
           queueMovies.push(currentMovie);
           localStorage.setItem('queueMovies', JSON.stringify(queueMovies));
           if (sessionStorage.getItem('pageQueue') === 'queue') {
-            markupQueue();
+            markupQueue(Number(sessionStorage.getItem('queueMovies')));
           }
           controlBtnStyle({ button: modalQueueBtn, list: queueMovies, movieId, listType: 'queue' });
         });

@@ -12,12 +12,11 @@ import { controlModal } from './js/modal';
 import './js/watched';
 import { addCoverDefault } from './js/addCoverDefault';
 import {scrollToTop} from "./js/scroll";
-let libraryKey;
-libraryKey = sessionStorage.getItem('pageLibrary') === 'library';
+
 let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
 async function showMovies(numberPage) {
-  if (libraryKey) {
+  if (sessionStorage.getItem('pageLibrary') === 'library') {
     return;
   }
   const data = await getMovies({ page: numberPage });
@@ -41,8 +40,7 @@ export default async function makePagination(numberPage) {
     visiblePages: 5,
     centerAlign: true,
     page: numberPage,
-    // currentPage: numberPage,
-  });
+    });
   instance.on('beforeMove', function (eventData) {
     sessionStorage.setItem('mainPage', eventData.page);
     scrollToTop();
@@ -51,10 +49,4 @@ export default async function makePagination(numberPage) {
 
 }
 
-// makePagination(page);
-
-// console.log(libraryKey);
 makePagination(page);
-// if (!libraryKey) {
-//   makePagination(page);
-// }
