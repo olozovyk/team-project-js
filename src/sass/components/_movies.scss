@@ -38,7 +38,6 @@ main {
   @include tablet {
     width: 294px;
     height: 398px;
-
   }
   @include desktop {
     width: 274px;
@@ -46,16 +45,13 @@ main {
 
   img {
     object-fit: cover;
+    background-image: url('../images/default_cover.jpg');
+    background-size: contain;
     @include tablet {
       object-fit: fill;
     }
-    
-  img {
-    background-image: url('../images/default_cover.jpg');
-    background-size: contain;
   }
 }
-
 .film__name {
   font-family: $ffMedium;
   font-size: var(--font-size12);
