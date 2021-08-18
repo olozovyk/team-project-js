@@ -11,7 +11,7 @@ import './js/searchQuery';
 import { controlModal } from './js/modal';
 import './js/watched';
 import { addCoverDefault } from './js/addCoverDefault';
-import {scrollToTop} from "./js/scroll";
+import { scrollToTop } from './js/scroll';
 
 let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
@@ -40,13 +40,21 @@ export default async function makePagination(numberPage) {
     visiblePages: 5,
     centerAlign: true,
     page: numberPage,
-    });
+  });
   instance.on('beforeMove', function (eventData) {
     sessionStorage.setItem('mainPage', eventData.page);
     scrollToTop();
     return showMovies(eventData.page);
   });
-
 }
 
 makePagination(page);
+
+// window.addEventListener(
+//   'resize',
+//   function () {
+//     console.log(innerWidth);
+//     console.log(innerHeight);
+//   },
+//   false,
+// );

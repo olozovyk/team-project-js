@@ -5,6 +5,7 @@ import notificationLibrary from '../templates/notificationLibrary.hbs';
 import { refs } from './refs';
 import { genresSet, dataSet, voteAverageNew } from './templatingSettings';
 import { controlModal } from './modal';
+import { scrollToTop } from './scroll';
 
 refs.libraryLink.addEventListener('click', onBtnMyLibrary);
 refs.btnWatched.addEventListener('click', onBtnMyLibrary);
@@ -88,6 +89,7 @@ function markupQueue(page) {
       instance.on('beforeMove', function (eventData) {
         sessionStorage.setItem('queueMovies', eventData.page);
         defaultPageQueue = eventData.page || 1;
+        scrollToTop();
         return markupQueue(defaultPageQueue);
       });
     }
@@ -137,6 +139,7 @@ function markupWatched(page) {
       instance.on('beforeMove', function (eventData) {
         sessionStorage.setItem('watchedPage', eventData.page);
         defaultPageWatched = eventData.page || 1;
+        scrollToTop();
         return markupWatched(defaultPageWatched);
       });
     }
