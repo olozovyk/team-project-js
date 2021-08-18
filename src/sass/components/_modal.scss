@@ -163,7 +163,8 @@ li {
   background: $orange;
   border-radius: 5px;
   color: $white;
-  padding: 1px 10px;
+  padding: 2px 10px 3px;
+  line-height: 1.1;
 }
 
 .response-item {
@@ -265,4 +266,5 @@ li {
   background-color: rgba(236, 122, 45, 0.6);
   border-color: rgba(236, 122, 45, 0.6);
   color: $white;
+  line-height: 1.3;
 }

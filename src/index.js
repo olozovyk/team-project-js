@@ -1,4 +1,5 @@
 import Pagination from 'tui-pagination';
+import lazySizes from 'lazysizes';
 import { Loading } from 'notiflix';
 import 'tui-pagination/dist/tui-pagination.min.css';
 import 'modern-normalize/modern-normalize.css';
@@ -13,6 +14,7 @@ import { controlModal } from './js/modal';
 import './js/watched';
 import { addCoverDefault } from './js/addCoverDefault';
 import { scrollToTop } from './js/scroll';
+
 
 let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
