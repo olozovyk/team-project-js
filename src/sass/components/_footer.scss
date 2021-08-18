@@ -44,3 +44,10 @@ font-size: var(--font-size14);
    margin-right: 10px;
    margin-left: 10px;
 }
+
+.footer__students{
+   color: $darkGrey;
+   font-family : $ffRegular; 
+   font-size: var(--font-size14);
+   text-decoration: underline;
+}
