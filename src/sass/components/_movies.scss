@@ -29,21 +29,29 @@ main {
 }
 
 .film__img-thumb {
-  height: 398px;
+  //height: 398px;
+  height: 126vw;
   min-width: 274px;
   margin-bottom: 10px;
   border-radius: 5px;
   overflow: hidden;
   @include tablet {
     width: 294px;
+    height: 398px;
+
   }
   @include desktop {
     width: 274px;
   }
 
   img {
-    background-image: linear-gradient(to right, rgba(150, 150, 150, 0.1), rgba(100, 100, 100, 0.1)),
-      url('../images/default_cover.jpg');
+    object-fit: cover;
+    @include tablet {
+      object-fit: fill;
+    }
+    
+  img {
+    background-image: url('../images/default_cover.jpg');
     background-size: contain;
   }
 }
