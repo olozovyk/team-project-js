@@ -292,12 +292,6 @@
   }
 }
 
-.header__block--button {
-  display: flex;
-  justify-content: center;
-  margin-top: 49px;
-}
-
 .header__list--button {
   display: flex;
   text-align: center;
@@ -307,6 +301,14 @@
   }
 }
 
+.header__block--button {
+  display: flex;
+  justify-content: center;
+  margin-top: 49px;
+}
+
+
+
 .header__button--library {
   right: 0px;
   cursor: pointer;
@@ -315,8 +317,9 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  width: 129px;
-  height: 44px;
+  min-width: 129px;
+  min-height: 44px;
+
   font-family: $ffMedium;
   font-size: var(--font-size12);
   line-height: 0.75;
@@ -325,7 +328,10 @@
   border: $border;
   border-radius: $borderRadius;
   outline: none;
-  padding: 0px;
+  padding-top: 14px;
+  padding-bottom: 12px;
+  padding-left: 38px;
+  padding-right: 38px;
   @extend %transitionBackgrColor;
   &:hover,
   &:focus {

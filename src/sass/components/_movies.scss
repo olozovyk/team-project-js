@@ -43,11 +43,16 @@ main {
   @include desktop {
     width: 274px;
   }
+
   img {
     object-fit: cover;
     @include tablet {
       object-fit: fill;
     }
+    
+  img {
+    background-image: url('../images/default_cover.jpg');
+    background-size: contain;
   }
 }
 

@@ -21,8 +21,6 @@ async function getMovies({ page = 1, query } = {}) {
     );
     const obj = {};
     obj.movies = addGenresAndPictures(data, genres);
-    // obj.page = data.data.page;
-    // obj.total_pages = data.data.total_pages;
     obj.total_results = data.data.total_results;
     return obj;
   } catch (error) {
