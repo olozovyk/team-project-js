@@ -1,4 +1,5 @@
 import Pagination from 'tui-pagination';
+import { Loading } from 'notiflix';
 import 'tui-pagination/dist/tui-pagination.min.css';
 import 'modern-normalize/modern-normalize.css';
 import './sass/main.scss';
@@ -11,11 +12,12 @@ import './js/searchQuery';
 import { controlModal } from './js/modal';
 import './js/watched';
 import { addCoverDefault } from './js/addCoverDefault';
-import {scrollToTop} from "./js/scroll";
+import { scrollToTop } from './js/scroll';
 
 let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
 async function showMovies(numberPage) {
+  Loading.init({ svgColor: '#ff6b08' });
   if (sessionStorage.getItem('pageLibrary') === 'library') {
     return;
   }
@@ -28,6 +30,7 @@ async function showMovies(numberPage) {
   refs.movies.innerHTML = templatingOneFilm(filmsArr);
   addCoverDefault(refs.movies);
   controlModal();
+  Loading.remove(500);
   return data.total_results;
 }
 
@@ -40,13 +43,12 @@ export default async function makePagination(numberPage) {
     visiblePages: 5,
     centerAlign: true,
     page: numberPage,
-    });
+  });
   instance.on('beforeMove', function (eventData) {
     sessionStorage.setItem('mainPage', eventData.page);
     scrollToTop();
     return showMovies(eventData.page);
   });
-
 }
 
 makePagination(page);

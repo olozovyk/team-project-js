@@ -40,6 +40,12 @@ main {
   @include desktop {
     width: 274px;
   }
+
+  img {
+    background-image: linear-gradient(to right, rgba(150, 150, 150, 0.1), rgba(100, 100, 100, 0.1)),
+      url('../images/default_cover.jpg');
+    background-size: contain;
+  }
 }
 
 .film__name {
