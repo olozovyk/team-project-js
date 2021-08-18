@@ -15,8 +15,6 @@ let arrPagination;
 let defaultPageWatched = Number(sessionStorage.getItem('watchedPage')) || 1;
 let defaultPageQueue = Number(sessionStorage.getItem('queueMovies')) || 1;
 
-let perPagePagination;
-
 // ф-ия вызывающаяся при клике на ссылку myLybrary, watched или перезагрузка страницы
 function onBtnMyLibrary(event) {
   refs.pagination.innerHTML = '';
