@@ -49,6 +49,7 @@ function onInputSearch(e) {
 
 async function showMovies({ page, query } = {}) {
   Loading.init({ svgColor: '#ff6b08' });
+  Loading.dots('Загрузка...');
   const data = await getMovies({ page, query: searchQuery });
   const arrayOfMovies = data.movies.map(movie => {
     const filmGenres = genresSet(movie.genreNames);
@@ -58,6 +59,7 @@ async function showMovies({ page, query } = {}) {
   if (arrayOfMovies.length === 0) {
     refs.headerFailureNotice.classList.remove('hidden');
     refs.searchForm.reset();
+    Loading.remove(500);
     return;
   }
 

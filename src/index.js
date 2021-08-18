@@ -18,6 +18,7 @@ let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
 async function showMovies(numberPage) {
   Loading.init({ svgColor: '#ff6b08' });
+  Loading.dots('Загрузка...');
   if (sessionStorage.getItem('pageLibrary') === 'library') {
     return;
   }
@@ -46,7 +47,9 @@ export default async function makePagination(numberPage) {
   });
   instance.on('beforeMove', function (eventData) {
     sessionStorage.setItem('mainPage', eventData.page);
-    scrollToTop();
+    setTimeout(() => {
+      scrollToTop();
+    }, 50);
     return showMovies(eventData.page);
   });
 }
