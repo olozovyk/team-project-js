@@ -35,6 +35,9 @@ main {
   margin-bottom: 10px;
   border-radius: 5px;
   overflow: hidden;
+  background-image: url('../images/default_cover.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
   @include tablet {
     width: 294px;
     height: 398px;
@@ -42,11 +45,9 @@ main {
   @include desktop {
     width: 274px;
   }
-
   img {
     object-fit: cover;
-    background-image: url('../images/default_cover.jpg');
-    background-size: contain;
+
     @include tablet {
       object-fit: fill;
     }
