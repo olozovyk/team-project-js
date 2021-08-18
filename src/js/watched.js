@@ -15,6 +15,8 @@ let arrPagination;
 let defaultPageWatched = Number(sessionStorage.getItem('watchedPage')) || 1;
 let defaultPageQueue = Number(sessionStorage.getItem('queueMovies')) || 1;
 
+let perPagePagination;
+
 // ф-ия вызывающаяся при клике на ссылку myLybrary, watched или перезагрузка страницы
 function onBtnMyLibrary(event) {
   refs.pagination.innerHTML = '';
@@ -113,7 +115,7 @@ function markupQueue(page) {
 
 // разметка watched
 function markupWatched(page) {
-  const numbersMovies = 9;
+  const numbersMovies = perPagePagination;
 
   try {
     const saveMovies = localStorage.getItem('watchedMovies');
@@ -131,7 +133,7 @@ function markupWatched(page) {
     function renderPaginationLibrary(page) {
       const instance = new Pagination(refs.pagination, {
         totalItems: parseMovies.length,
-        itemsPerPage: 9,
+        itemsPerPage: perPagePagination,
         centerAlign: true,
         page: defaultPageWatched,
         visiblePages: 5,

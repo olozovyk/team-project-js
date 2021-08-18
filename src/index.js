@@ -49,12 +49,3 @@ export default async function makePagination(numberPage) {
 }
 
 makePagination(page);
-
-// window.addEventListener(
-//   'resize',
-//   function () {
-//     console.log(innerWidth);
-//     console.log(innerHeight);
-//   },
-//   false,
-// );
