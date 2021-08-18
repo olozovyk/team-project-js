@@ -115,7 +115,7 @@ function markupQueue(page) {
 
 // разметка watched
 function markupWatched(page) {
-  const numbersMovies = perPagePagination;
+  const numbersMovies = 9;
 
   try {
     const saveMovies = localStorage.getItem('watchedMovies');
@@ -133,7 +133,7 @@ function markupWatched(page) {
     function renderPaginationLibrary(page) {
       const instance = new Pagination(refs.pagination, {
         totalItems: parseMovies.length,
-        itemsPerPage: perPagePagination,
+        itemsPerPage: 9,
         centerAlign: true,
         page: defaultPageWatched,
         visiblePages: 5,
