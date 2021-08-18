@@ -47,9 +47,7 @@ export default async function makePagination(numberPage) {
   });
   instance.on('beforeMove', function (eventData) {
     sessionStorage.setItem('mainPage', eventData.page);
-    setTimeout(() => {
-      scrollToTop();
-    }, 50);
+    scrollToTop();
     return showMovies(eventData.page);
   });
 }

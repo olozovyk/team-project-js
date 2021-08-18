@@ -104,19 +104,30 @@
 .icon--logo {
   fill: currentColor;
   box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
   @include tablet {
     margin-right: 10px;
+  }
+}
+.header__logo--link {
+  &:hover {
+    .logo__title {
+      text-shadow: 2px 4px 4px rgb(255 255 255 / 40%);
+    }
   }
 }
 
 .logo__title {
   display: none;
   @include tablet {
-    display: contents;
+    display: inline-block;
+    vertical-align: middle;
     color: $white;
     font-family: $ffRegular;
     font-size: var(--font-size30);
     max-width: 141px;
+    transition: .3s;
   }
 }
 
@@ -171,29 +182,43 @@
   min-height: 20px;
   position: relative;
   border-bottom: 1px solid $grey;
-  margin-bottom: 22px;
   font-size: var(--font-size14);
-
+  max-width: 340px;
+  margin: 0 auto 22px;
   @include tablet {
     width: 336px;
     margin: 0 auto;
     margin-bottom: 22px;
   }
   &:focus,
+  &:focus-within,
   &:hover {
-    border-bottom: bold;
+      border-color: $orange;
+
+  }
+  &:focus-within,
+  &:hover {
+    .header__form--button {
+      .header__form--icon {
+        stroke: $orange;
+        //fill: $orange;
+        transform: scale(1.3);
+      }
+    }
   }
 }
 
 .header-input {
   vertical-align: middle;
-  color: $white;
+  //color: $white;
+  color: bisque;
   font-family: $ffRegular;
   font-size: var(--font-size14);
   background-color: transparent;
   width: 100%;
   outline: none;
-  padding-right: 20px;
+  padding: 5px 20px 5px 5px;
+
   &::input-placeholder {
     opacity: 1;
     transition: opacity 0.3s ease;
@@ -216,12 +241,25 @@
 
 .header__form--button {
   position: absolute;
-  right: 0px;
+  right: 0;
+  top: 0;
+  bottom: 0;
   border: none;
   outline: none;
   cursor: pointer;
   background: transparent;
 }
+
+.header__form--icon {
+  transition: fill, transform .3s;
+  stroke: whitesmoke;
+  &:hover {
+    fill: $orange;
+    stroke:$orange;
+    transform: scale(1.3);
+  }
+}
+
 //cтили сообщения//
 .header__notice {
   display: flex;
