@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Loading } from 'notiflix';
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '98b2d661a291459629d67fe532d04a86';
@@ -9,7 +8,6 @@ async function getMovies({ page = 1, query } = {}) {
 
   try {
     if (query) {
-      Loading.dots('Загрузка');
       const data = await axios(
         `${BASE_URL}search/movie?api_key=${API_KEY}&language=ru&page=${page}&query=${query}`,
       );
@@ -18,7 +16,6 @@ async function getMovies({ page = 1, query } = {}) {
       obj.total_results = data.data.total_results;
       return obj;
     }
-    Loading.dots('Загрузка');
     const data = await axios(
       `${BASE_URL}trending/movie/week?api_key=${API_KEY}&language=ru&page=${page}`,
     );
