@@ -116,7 +116,7 @@ export function controlModal() {
             queueMovies.splice(indexMovie, 1);
             localStorage.setItem('queueMovies', JSON.stringify(queueMovies));
             if (sessionStorage.getItem('pageQueue') === 'queue') {
-              markupQueue();
+              markupQueue(Number(sessionStorage.getItem('queueMovies')));
             }
             controlBtnStyle({
               button: modalQueueBtn,
@@ -124,14 +124,13 @@ export function controlModal() {
               movieId,
               listType: 'queue',
             });
-
             return;
           }
 
           queueMovies.push(currentMovie);
           localStorage.setItem('queueMovies', JSON.stringify(queueMovies));
           if (sessionStorage.getItem('pageQueue') === 'queue') {
-            markupQueue();
+            markupQueue(Number(sessionStorage.getItem('queueMovies')));
           }
           controlBtnStyle({ button: modalQueueBtn, list: queueMovies, movieId, listType: 'queue' });
         });

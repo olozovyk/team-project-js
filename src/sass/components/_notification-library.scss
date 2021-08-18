@@ -1,8 +1,11 @@
 .notification-library {
-  background-color: rgb(160, 216, 165);
+  background-color: rgb(241 84 84 / 84%);
   margin: 0 auto;
   width: fit-content;
+  border-radius: 6px;
+  border: solid 2px #6d242c;
+  padding: 28px;
 }
 .notification-library-text {
-  padding: 20px;
+  font-size: 20px;
 }

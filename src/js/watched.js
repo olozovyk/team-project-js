@@ -11,64 +11,107 @@ refs.btnWatched.addEventListener('click', onBtnMyLibrary);
 refs.btnQueue.addEventListener('click', onBtnQueue);
 
 let arrPagination;
-let defaultPage = Number(sessionStorage.getItem('watchedPage')) || 1;
+let defaultPageWatched = Number(sessionStorage.getItem('watchedPage')) || 1;
+let defaultPageQueue = Number(sessionStorage.getItem('queueMovies')) || 1;
 
+// ф-ия вызывающаяся при клике на ссылку myLybrary, watched или перезагрузка страницы
 function onBtnMyLibrary(event) {
+  refs.pagination.innerHTML = '';
+  refs.btnWatched.classList.add('btn-is-active');
+
   if (refs.btnQueue.classList.contains('btn-is-active')) {
     addBackGrOrang(refs.btnQueue, refs.btnWatched);
   }
-  refs.btnWatched.classList.add('btn-is-active');
 
-  refs.pagination.innerHTML = '';
+  if (sessionStorage.getItem('pageQueue') === 'queue') {
+    sessionStorage.removeItem('pageQueue');
+    sessionStorage.setItem('pageWatched', 'watched');
+  }
+
   const keyAvailability = localStorage.getItem('watchedMovies') !== null;
   const emptyArr = localStorage.getItem('watchedMovies') === '[]';
   if (!keyAvailability || emptyArr) {
     localStorage.setItem('watchedMovies', '[]');
     refs.movies.innerHTML = '';
-    return refs.movies.insertAdjacentHTML('afterbegin', notificationLibrary());
+    return (refs.pagination.innerHTML = notificationLibrary());
   }
 
-  markupWatched(defaultPage);
-
-  if (sessionStorage.getItem('pageQueue') === 'queue') {
-    sessionStorage.removeItem('pageQueue');
-  }
-  sessionStorage.setItem('pageWatched', 'watched');
+  markupWatched(defaultPageWatched);
 }
 
+// ф-ия вызывающаяся при клике на queue или перезагрузка страницы
 function onBtnQueue(e) {
-  const keyAvailability = localStorage.getItem('queueMovies') !== null;
-  if (!keyAvailability) {
-    localStorage.setItem('queueMovies', '[]');
-  }
-
-  addBackGrOrang(refs.btnWatched, refs.btnQueue);
-  markupQueue();
   refs.pagination.innerHTML = '';
+  addBackGrOrang(refs.btnWatched, refs.btnQueue);
+
   if (sessionStorage.getItem('pageWatched') === 'watched') {
     sessionStorage.removeItem('pageWatched');
+    sessionStorage.setItem('pageQueue', 'queue');
   }
-  sessionStorage.setItem('pageQueue', 'queue');
+
+  const keyAvailability = localStorage.getItem('queueMovies') !== null;
+  const emptyArr = localStorage.getItem('queueMovies') === '[]';
+  if (!keyAvailability || emptyArr) {
+    localStorage.setItem('queueMovies', '[]');
+    refs.movies.innerHTML = '';
+    return (refs.pagination.innerHTML = notificationLibrary());
+  }
+
+  markupQueue(defaultPageQueue);
 }
 
 // разметка queue
-function markupQueue() {
+function markupQueue(page) {
+  const numbersMovies = 9;
+
   try {
     const saveMovies = localStorage.getItem('queueMovies');
     const parseMovies = JSON.parse(saveMovies);
-    getLibraryMovies(parseMovies);
+
+    let start = 0;
+    let end = numbersMovies * page;
+    if (page > 1) {
+      start = numbersMovies * (page - 1);
+    }
+    arrPagination = parseMovies.slice(start, end);
+    getLibraryMovies(arrPagination);
     controlModal();
+
+    function renderPaginationLibrary(page) {
+      const instance = new Pagination(refs.pagination, {
+        totalItems: parseMovies.length,
+        itemsPerPage: 9,
+        centerAlign: true,
+        page: defaultPageQueue,
+        visiblePages: 5,
+      });
+      instance.on('beforeMove', function (eventData) {
+        sessionStorage.setItem('queueMovies', eventData.page);
+        defaultPageQueue = eventData.page || 1;
+        return markupQueue(defaultPageQueue);
+      });
+    }
+
+    renderPaginationLibrary(defaultPageQueue);
+    if (arrPagination.length === 0) {
+      defaultPageQueue--;
+      if (defaultPageQueue < 1) {
+        defaultPageQueue = 1;
+        if (parseMovies.length === 0) {
+          refs.pagination.innerHTML = notificationLibrary();
+          return;
+        }
+      }
+      markupQueue(defaultPageQueue);
+    }
   } catch (error) {
-    console.log('error');
+    console.log(error);
   }
 }
 
 // разметка watched
-// const watchedPage = Number(sessionStorage.getItem('watchedPage')) || 1;
-// console.log(watchedPage);
 function markupWatched(page) {
-  const numbersMovies = 3;
-  console.log(page);
+  const numbersMovies = 9;
 
   try {
     const saveMovies = localStorage.getItem('watchedMovies');
@@ -79,35 +122,36 @@ function markupWatched(page) {
     if (page > 1) {
       start = numbersMovies * (page - 1);
     }
-
     arrPagination = parseMovies.slice(start, end);
     getLibraryMovies(arrPagination);
     controlModal();
-    // let defaultPage;
 
     function renderPaginationLibrary(page) {
       const instance = new Pagination(refs.pagination, {
         totalItems: parseMovies.length,
-        itemsPerPage: 3,
+        itemsPerPage: 9,
         centerAlign: true,
-        page: defaultPage,
+        page: defaultPageWatched,
         visiblePages: 5,
       });
       instance.on('beforeMove', function (eventData) {
-        // sessionStorage.setItem('mainPage', eventData.page);
         sessionStorage.setItem('watchedPage', eventData.page);
-        defaultPage = eventData.page || 1;
-        // console.log(defaultPage);
-        return markupWatched(defaultPage);
+        defaultPageWatched = eventData.page || 1;
+        return markupWatched(defaultPageWatched);
       });
     }
-    renderPaginationLibrary(defaultPage);
+
+    renderPaginationLibrary(defaultPageWatched);
     if (arrPagination.length === 0) {
-      defaultPage--;
-      if (defaultPage < 1) {
-        defaultPage = 1;
+      defaultPageWatched--;
+      if (defaultPageWatched < 1) {
+        defaultPageWatched = 1;
+        if (parseMovies.length === 0) {
+          refs.pagination.innerHTML = notificationLibrary();
+          return;
+        }
       }
-      markupWatched(defaultPage);
+      markupWatched(defaultPageWatched);
     }
   } catch (error) {
     console.log(error);
@@ -134,13 +178,18 @@ function addBackGrOrang(remove, add) {
 // jтрисовка фильмов с sessionStorage при перезагрузке страницы
 (function () {
   if (sessionStorage.getItem('pageQueue') === 'queue') {
-    onBtnQueue();
+    setTimeout(() => {
+      onBtnQueue();
+    }, 0);
     return;
   }
 })();
+
 (function () {
   if (sessionStorage.getItem('pageWatched') === 'watched') {
-    onBtnMyLibrary();
+    setTimeout(() => {
+      onBtnMyLibrary();
+    }, 0);
     return;
   }
 })();
