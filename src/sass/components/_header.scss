@@ -257,12 +257,6 @@
   }
 }
 
-.header__block--button {
-  display: flex;
-  justify-content: center;
-  margin-top: 49px;
-}
-
 .header__list--button {
   display: flex;
   text-align: center;
@@ -271,6 +265,14 @@
     margin-right: 20px;
   }
 }
+
+.header__block--button {
+  display: flex;
+  justify-content: center;
+  margin-top: 49px;
+}
+
+
 
 .header__button--library {
   right: 0px;
