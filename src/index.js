@@ -15,15 +15,14 @@ import './js/watched';
 import { addCoverDefault } from './js/addCoverDefault';
 import { scrollToTop } from './js/scroll';
 
-
 let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
 async function showMovies(numberPage) {
-  Loading.init({ svgColor: '#ff6b08' });
-  Loading.dots('Загрузка...');
   if (sessionStorage.getItem('pageLibrary') === 'library') {
     return;
   }
+  Loading.init({ svgColor: '#ff6b08' });
+  Loading.dots('Загрузка...');
   const data = await getMovies({ page: numberPage });
   const filmsArr = data.movies.map(film => {
     const filmGenres = genresSet(film.genreNames);
