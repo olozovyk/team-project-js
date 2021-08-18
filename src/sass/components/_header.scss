@@ -86,20 +86,6 @@
   position: relative;
   margin-left: auto;
   margin-right: auto;
-
-  // padding-bottom: 97px;
-  //   @include beforeTablet{
-  //   padding-top: 46px;
-
-  //   }
-  //    @include tablet{
-  //    padding-top: 41px;
-
-  //    }
-  //  @include  desktop{
-  //    padding-top: 43px;
-
-  //  }
 }
 
 .header__menu {
@@ -263,6 +249,7 @@
   cursor: pointer;
   background: transparent;
 }
+
 .header__form--icon {
   transition: fill, transform .3s;
   stroke: whitesmoke;
@@ -272,6 +259,7 @@
     transform: scale(1.3);
   }
 }
+
 //cтили сообщения//
 .header__notice {
   display: flex;
@@ -306,8 +294,6 @@
   justify-content: center;
   margin-top: 49px;
 }
-
-
 
 .header__button--library {
   right: 0px;
