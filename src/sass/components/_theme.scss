@@ -1,16 +1,23 @@
 .theme-switch {
   position: absolute;
-  right: 72px;
-  top: 140px;
+  // right: 72px;
+  // top: 140px;
   color: #f5e9e9;
-  @include beforeTablet {
-    right: 20px;
+  // @include beforeTablet {
+  //   right: 20px;
+  // }
+  right: 22px;
+  top: 145px;
+
+  @media screen and (min-width: 768px) {
+    right: 74px;
+    // top: 62px;
   }
 }
 
 .theme-switch__icon {
-  height: 24px;
-  width: 24px;
+  height: 18px;
+  width: 18px;
   cursor: pointer;
 }
 
@@ -45,8 +52,9 @@ body.theme-dark {
   }
 
   .modal {
-    background-color: rgba(0, 0, 0, 0.877);
+    background-color: rgba(0, 0, 0, 0.9);
     box-shadow: 0 0 15px 5px rgba(75, 75, 75, 0.425);
+    border-radius: 5px;
   }
 
   .modal__close-icon {
@@ -59,7 +67,7 @@ body.theme-dark {
   .film-modal__description {
     color: gainsboro;
   }
-/*========================================*/
+  /*========================================*/
   // .modal {
   //   background-image: radial-gradient(
   //     ellipse at center,
