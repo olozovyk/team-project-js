@@ -1,0 +1,37 @@
+.theme-switch {
+  position: absolute;
+  right: 16px;
+  top: 190px;
+}
+
+.theme-switch__icon {
+  color: #a23d3d;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+
+.icon-sun {
+  color: #edb1b1;
+}
+
+body.theme-dark {
+  background-image: url(../images/hallCinema.jpg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-attachment: fixed;
+  .film__name {
+    color: #fff;
+  }
+  .tui-pagination .tui-page-btn {
+    color: #fff;
+  }
+  .tui-pagination .tui-page-btn:hover {
+    background-color: #8a3838;
+  }
+}
+
+header.theme-dark {
+  background-image: none;
+  background-color: rgba(0, 0, 0, 0);
+}

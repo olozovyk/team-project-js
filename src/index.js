@@ -14,6 +14,7 @@ import { controlModal } from './js/modal';
 import './js/watched';
 import { addCoverDefault } from './js/addCoverDefault';
 import { scrollToTop } from './js/scroll';
+import './js/theme';
 
 let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
