@@ -16,11 +16,14 @@
 
 body.theme-dark {
   // background-image: url(../images/hallCinema.jpg);
-  background-image: url(../images/home2xmob.jpg);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(../images/home2xmob.jpg);
+
   background-repeat: no-repeat;
   background-position: 0 0;
   background-attachment: fixed;
   background-size: cover;
+
   .footer__students {
     color: $orange;
   }
@@ -36,6 +39,42 @@ body.theme-dark {
   .footer {
     background-color: transparent;
   }
+
+  .backdrop {
+    background-color: transparent;
+  }
+
+  .modal {
+    background-color: rgba(0, 0, 0, 0.877);
+    box-shadow: 0 0 15px 5px rgba(75, 75, 75, 0.425);
+  }
+
+  .modal__close-icon {
+    stroke: gainsboro;
+  }
+  .film-modal__name,
+  .film-grade__item-static,
+  .grade,
+  .film-grade__item,
+  .film-modal__description {
+    color: gainsboro;
+  }
+/*========================================*/
+  // .modal {
+  //   background-image: radial-gradient(
+  //     ellipse at center,
+  //     rgb(70, 68, 72) 0%,
+  //     rgb(46, 51, 56) 50%,
+  //     rgba(39, 43, 41, 0.844) 100%
+  //   );
+  // }
+  // .btn__queue,
+  // .btn__watched {
+  //   background-color: #91959c;
+  // }
+  // .grade {
+  //   background: #9e3f00;
+  // }
 }
 
 header.theme-dark {
