@@ -1,33 +1,40 @@
 .theme-switch {
   position: absolute;
-  right: 16px;
-  top: 190px;
+  right: 72px;
+  top: 140px;
+  color: #f5e9e9;
+  @include beforeTablet {
+    right: 20px;
+  }
 }
 
 .theme-switch__icon {
-  color: #a23d3d;
   height: 24px;
   width: 24px;
   cursor: pointer;
 }
 
-.icon-sun {
-  color: #edb1b1;
-}
-
 body.theme-dark {
-  background-image: url(../images/hallCinema.jpg);
+  // background-image: url(../images/hallCinema.jpg);
+  background-image: url(../images/home2xmob.jpg);
   background-repeat: no-repeat;
   background-position: 0 0;
   background-attachment: fixed;
-  .film__name {
-    color: #fff;
+  background-size: cover;
+  .footer__students {
+    color: $orange;
   }
-  .tui-pagination .tui-page-btn {
-    color: #fff;
+  .tui-pagination .tui-page-btn,
+  .film__name,
+  .footer__link,
+  .notification-library-text {
+    color: $white;
   }
   .tui-pagination .tui-page-btn:hover {
     background-color: #8a3838;
+  }
+  .footer {
+    background-color: transparent;
   }
 }
 
