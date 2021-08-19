@@ -15,6 +15,47 @@ let arrPagination;
 let defaultPageWatched = Number(sessionStorage.getItem('watchedPage')) || 1;
 let defaultPageQueue = Number(sessionStorage.getItem('queueMovies')) || 1;
 
+// ===============
+let perPagePagination;
+
+// получение фильиов в библиотеке
+const getLibraryMovies = arg => {
+  const arrPagination = arg.map(film => {
+    const filmGenres = genresSet(film.genres);
+    const filmDate = dataSet(film.release_date);
+    const filmVoteAverage = voteAverageNew(film.vote_average);
+    return { ...film, filmGenres, filmDate, filmVoteAverage };
+  });
+  return (refs.movies.innerHTML = templateLibrary(arrPagination));
+};
+
+// ф-ция отрисовывающая кол-во фильмов на странице в зависимости от ширины экрана
+const mediaQuery = window.matchMedia('(min-width: 1024px)');
+function handleTabletChange(e) {
+  if (!sessionStorage.getItem('pageLibrary') === 'library') {
+    return;
+  }
+  if (e.matches) {
+    perPagePagination = 9;
+    if (sessionStorage.getItem('pageWatched') === 'watched') {
+      markupWatched(defaultPageWatched);
+    } else if (sessionStorage.getItem('pageQueue') === 'queue') {
+      markupQueue(defaultPageQueue);
+    }
+  }
+  if (!e.matches) {
+    perPagePagination = 8;
+    if (sessionStorage.getItem('pageWatched') === 'watched') {
+      markupWatched(defaultPageWatched);
+    } else if (sessionStorage.getItem('pageQueue') === 'queue') {
+      markupQueue(defaultPageQueue);
+    }
+  }
+  // }
+}
+mediaQuery.addListener(handleTabletChange);
+handleTabletChange(mediaQuery);
+
 // ф-ия вызывающаяся при клике на ссылку myLybrary, watched или перезагрузка страницы
 function onBtnMyLibrary(event) {
   refs.pagination.innerHTML = '';
@@ -63,7 +104,7 @@ function onBtnQueue(e) {
 
 // разметка queue
 function markupQueue(page) {
-  const numbersMovies = 9;
+  const numbersMovies = perPagePagination;
 
   try {
     const saveMovies = localStorage.getItem('queueMovies');
@@ -81,7 +122,7 @@ function markupQueue(page) {
     function renderPaginationLibrary(page) {
       const instance = new Pagination(refs.pagination, {
         totalItems: parseMovies.length,
-        itemsPerPage: 9,
+        itemsPerPage: perPagePagination,
         centerAlign: true,
         page: defaultPageQueue,
         visiblePages: 5,
@@ -113,7 +154,7 @@ function markupQueue(page) {
 
 // разметка watched
 function markupWatched(page) {
-  const numbersMovies = 9;
+  const numbersMovies = perPagePagination;
 
   try {
     const saveMovies = localStorage.getItem('watchedMovies');
@@ -131,7 +172,7 @@ function markupWatched(page) {
     function renderPaginationLibrary(page) {
       const instance = new Pagination(refs.pagination, {
         totalItems: parseMovies.length,
-        itemsPerPage: 9,
+        itemsPerPage: perPagePagination,
         centerAlign: true,
         page: defaultPageWatched,
         visiblePages: 5,
@@ -161,16 +202,16 @@ function markupWatched(page) {
   }
 }
 
-// получение фильиов в библиотеке
-const getLibraryMovies = arg => {
-  const arrPagination = arg.map(film => {
-    const filmGenres = genresSet(film.genres);
-    const filmDate = dataSet(film.release_date);
-    const filmVoteAverage = voteAverageNew(film.vote_average);
-    return { ...film, filmGenres, filmDate, filmVoteAverage };
-  });
-  return (refs.movies.innerHTML = templateLibrary(arrPagination));
-};
+// // получение фильиов в библиотеке
+// const getLibraryMovies = arg => {
+//   const arrPagination = arg.map(film => {
+//     const filmGenres = genresSet(film.genres);
+//     const filmDate = dataSet(film.release_date);
+//     const filmVoteAverage = voteAverageNew(film.vote_average);
+//     return { ...film, filmGenres, filmDate, filmVoteAverage };
+//   });
+//   return (refs.movies.innerHTML = templateLibrary(arrPagination));
+// };
 
 // добавление. удаление активного стиля кнопок watched и queue
 function addBackGrOrang(remove, add) {
