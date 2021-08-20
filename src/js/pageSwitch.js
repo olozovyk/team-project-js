@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import makePaginationFn from '../index';
+import { makePagination } from '../index';
 
 refs.logo.addEventListener('click', onLogo);
 refs.libraryLink.addEventListener('click', onLibraryClick);
@@ -29,14 +29,14 @@ function pageClassSetter() {
 function onHomeClick(e) {
   e.preventDefault();
   resetToHomePageStyle();
-  makePaginationFn(1);
+  makePagination(1);
 }
 
 function onLogo(e) {
   e.preventDefault();
   sessionStorage.clear();
   resetToHomePageStyle();
-  makePaginationFn(1);
+  makePagination(1);
 }
 
 function keepLibraryBtnStyle() {

@@ -18,40 +18,45 @@ import './js/theme';
 
 let page = Number(sessionStorage.getItem('mainPage')) || 1;
 
-async function showMovies(numberPage) {
+async function renderMovies(numberPage) {
   if (sessionStorage.getItem('pageLibrary') === 'library') {
     return;
   }
   Loading.init({ svgColor: '#ff6b08' });
   Loading.dots('Загрузка...');
-  const data = await getMovies({ page: numberPage });
-  const filmsArr = data.movies.map(film => {
-    const filmGenres = genresSet(film.genreNames);
-    const filmDate = dataSet(film.release_date);
-    return { ...film, filmGenres, filmDate };
-  });
-  refs.movies.innerHTML = templatingOneFilm(filmsArr);
+  const data = await handleMoviesObj({ page: numberPage });
+  refs.movies.innerHTML = templatingOneFilm(data.movies);
   addCoverDefault(refs.movies);
   controlModal();
   Loading.remove(500);
-  return data.total_results;
+  return data.total;
 }
 
-export default async function makePagination(numberPage) {
-  const total = await showMovies(numberPage);
+makePagination(page);
+
+export async function makePagination(page, query) {
+  const total = await renderMovies(page);
   const paginationEl = document.querySelector('.js-pagination');
   const instance = new Pagination(paginationEl, {
     totalItems: total,
     itemsPerPage: 20,
     visiblePages: 5,
     centerAlign: true,
-    page: numberPage,
+    page,
   });
   instance.on('beforeMove', function (eventData) {
     sessionStorage.setItem('mainPage', eventData.page);
     scrollToTop();
-    return showMovies(eventData.page);
+    renderMovies(eventData.page);
   });
 }
 
-makePagination(page);
+export async function handleMoviesObj({ page, query }) {
+  const data = await getMovies({ page, query });
+  const moviesArr = data.movies.map(movie => {
+    const movieGenres = genresSet(movie.genreNames);
+    const movieDate = dataSet(movie.release_date);
+    return { ...movie, movieGenres, movieDate };
+  });
+  return { movies: moviesArr, total: data.total_results };
+}

@@ -7,6 +7,7 @@ import { refs } from './refs';
 import { dataSet, genresSet } from './templatingSettings';
 import { controlModal } from './modal';
 import { addCoverDefault } from './addCoverDefault';
+import { scrollToTop } from './scroll';
 
 Loading.init({ svgColor: '#ff6b08' });
 
@@ -38,12 +39,14 @@ function onInputSearch(e) {
     const instance = new Pagination(paginationEl, {
       totalItems: total,
       itemsPerPage: 20,
+      visiblePages: 5,
       centerAlign: true,
       page,
     });
     instance.on('beforeMove', function (eventData) {
-      refs.movies.innerHTML = '';
-      return showMovies({ page: eventData.page, query: searchQuery });
+      scrollToTop();
+      // refs.movies.innerHTML = '';
+      showMovies({ page: eventData.page, query: searchQuery });
     });
   }
 
@@ -55,9 +58,9 @@ async function showMovies({ page, query } = {}) {
   Loading.dots('Загрузка...');
   const data = await getMovies({ page, query: searchQuery });
   const arrayOfMovies = data.movies.map(movie => {
-    const filmGenres = genresSet(movie.genreNames);
-    const filmDate = dataSet(movie.release_date);
-    return { ...movie, filmGenres, filmDate };
+    const movieGenres = genresSet(movie.genreNames);
+    const movieDate = dataSet(movie.release_date);
+    return { ...movie, movieGenres, movieDate };
   });
   if (arrayOfMovies.length === 0) {
     refs.headerFailureNotice.classList.remove('hidden');
@@ -76,7 +79,7 @@ async function showMovies({ page, query } = {}) {
 }
 
 function cardRender(movies) {
-  refs.filmList.insertAdjacentHTML('beforeend', templatingOneFilm(movies));
+  refs.movies.innerHTML = templatingOneFilm(movies);
 }
 
 function clearInterface() {
