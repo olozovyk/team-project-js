@@ -127,7 +127,7 @@
     font-family: $ffRegular;
     font-size: var(--font-size30);
     max-width: 141px;
-    transition: .3s;
+    transition: 0.3s;
   }
 }
 
@@ -193,8 +193,7 @@
   &:focus,
   &:focus-within,
   &:hover {
-      border-color: $orange;
-
+    border-color: $orange;
   }
   &:focus-within,
   &:hover {
@@ -211,7 +210,7 @@
 .header-input {
   vertical-align: middle;
   //color: $white;
-  color: bisque;
+  color: gainsboro;
   font-family: $ffRegular;
   font-size: var(--font-size14);
   background-color: transparent;
@@ -236,7 +235,7 @@
 .header__form input::placeholder {
   text-align: left;
   background-color: transparent;
-  color: $white;
+  color: gainsboro;
 }
 
 .header__form--button {
@@ -251,11 +250,11 @@
 }
 
 .header__form--icon {
-  transition: fill, transform .3s;
+  transition: fill, transform 0.3s;
   stroke: whitesmoke;
   &:hover {
     fill: $orange;
-    stroke:$orange;
+    stroke: $orange;
     transform: scale(1.3);
   }
 }

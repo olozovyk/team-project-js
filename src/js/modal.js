@@ -24,7 +24,6 @@ export function controlModal() {
     if (event.target.nodeName === 'UL') {
       return;
     }
-    // openModal(modalEl);
 
     const listItem = event.target.closest('LI');
     if (!listItem) {
@@ -141,8 +140,7 @@ export function controlModal() {
 
   function openModal(modalEl) {
     modalEl.classList.remove('backdrop__hidden');
-    document.body.style.overflow = 'hidden';
-    document.body.style.width = 'calc(100% - 15px)';
+    document.body.classList.add('open');
     window.addEventListener('keydown', onKeydownEscape);
   }
 
@@ -159,8 +157,7 @@ export function controlModal() {
 
   function closeModal() {
     modalEl.classList.add('backdrop__hidden');
-    document.body.style.overflow = 'auto';
-    document.body.style.width = '100%';
+    document.body.classList.remove('open');
     window.removeEventListener('keydown', onKeydownEscape);
   }
 

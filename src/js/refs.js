@@ -13,4 +13,7 @@ export const refs = {
   btnQueue: document.querySelector('.js-queue'),
   pagination: document.querySelector('.js-pagination'),
   logo: document.querySelector('.header__logo'),
+  iconDark: document.querySelector('#moon'),
+  iconLight: document.querySelector('#sun'),
+  body: document.querySelector('body'),
 };

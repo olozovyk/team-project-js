@@ -66,4 +66,14 @@ main {
   font-size: var(--font-size12);
   line-height: 1.33;
   color: $orange;
+  margin-top: 5px;
+}
+
+.film__item:hover img,
+.film__item:focus img {
+  transform: scale(1.05);
+}
+
+.film__item img {
+  transition: transform 250ms;
 }
