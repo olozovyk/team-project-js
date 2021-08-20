@@ -31,6 +31,9 @@ function onInputSearch(e) {
 
   async function makePagination({ page, query } = {}) {
     const total = await showMovies({ page, query: searchQuery });
+    if (total === null) {
+      return;
+    }
     const paginationEl = document.querySelector('.js-pagination');
     const instance = new Pagination(paginationEl, {
       totalItems: total,
@@ -60,7 +63,7 @@ async function showMovies({ page, query } = {}) {
     refs.headerFailureNotice.classList.remove('hidden');
     refs.searchForm.reset();
     Loading.remove(500);
-    return;
+    return null;
   }
 
   refs.headerFailureNotice.classList.add('hidden');
