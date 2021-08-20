@@ -60,7 +60,6 @@ li {
   border-radius: 5px;
   overflow: hidden;
 
-
   @include tablet {
     min-width: 264px;
     margin-bottom: 0px;
@@ -263,8 +262,8 @@ li {
 
 // Стили кнопок, если фильм уже в каком-то из списков
 .in-list {
-  background-color: rgba(236, 122, 45, 0.6);
-  border-color: rgba(236, 122, 45, 0.6);
+  background-color: rgba(236, 122, 45, 0.8);
+  border-color: rgba(236, 122, 45, 0.8);
   color: $white;
   line-height: 1.3;
 }
