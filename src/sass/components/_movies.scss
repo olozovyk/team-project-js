@@ -68,3 +68,12 @@ main {
   color: $orange;
   margin-top: 5px;
 }
+
+.film__item:hover img,
+.film__item:focus img {
+  transform: scale(1.05);
+}
+
+.film__item img {
+  transition: transform 250ms;
+}

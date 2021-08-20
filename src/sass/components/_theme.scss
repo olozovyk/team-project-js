@@ -36,11 +36,26 @@ body.theme-dark {
   .tui-pagination .tui-page-btn:hover {
     background-color: #8a3838;
   }
-  .footer {
-    background-color: transparent;
+
+  .tui-ico-first,
+  .tui-ico-prev,
+  .tui-ico-ellip,
+  .tui-ico-last,
+  .tui-ico-next {
+    filter: brightness(0) invert(1);
   }
 
-  .backdrop {
+  .tui-is-disabled {
+    .tui-ico-first,
+    .tui-ico-prev,
+    .tui-ico-ellip,
+    .tui-ico-last,
+    .tui-ico-next {
+      filter: brightness(0);
+    }
+  }
+
+  .footer {
     background-color: transparent;
   }
 
@@ -61,23 +76,6 @@ body.theme-dark {
   .film-modal__description {
     color: gainsboro;
   }
-
-  /*========================================*/
-  // .modal {
-  //   background-image: radial-gradient(
-  //     ellipse at center,
-  //     rgb(70, 68, 72) 0%,
-  //     rgb(46, 51, 56) 50%,
-  //     rgba(39, 43, 41, 0.844) 100%
-  //   );
-  // }
-  // .btn__queue,
-  // .btn__watched {
-  //   background-color: #91959c;
-  // }
-  // .grade {
-  //   background: #9e3f00;
-  // }
 }
 
 header.theme-dark {
