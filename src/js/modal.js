@@ -1,6 +1,5 @@
 import { getMovieById } from './fetch';
 import movieTemplate from '../../src/templates/modal.hbs';
-import { refs } from './refs';
 import { markupQueue, markupWatched } from './watched';
 import { addCoverDefault } from './addCoverDefault';
 
