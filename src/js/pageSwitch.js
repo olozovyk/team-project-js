@@ -1,5 +1,6 @@
 import { refs } from './refs';
-import { makePagination } from '../index';
+import { makePagination } from './makePagination';
+import { renderMovies } from './mainPage';
 
 refs.logo.addEventListener('click', onLogo);
 refs.libraryLink.addEventListener('click', onLibraryClick);
@@ -29,14 +30,14 @@ function pageClassSetter() {
 function onHomeClick(e) {
   e.preventDefault();
   resetToHomePageStyle();
-  makePagination(1);
+  makePagination({ page: 1, renderFunction: renderMovies });
 }
 
 function onLogo(e) {
   e.preventDefault();
   sessionStorage.clear();
   resetToHomePageStyle();
-  makePagination(1);
+  makePagination({ page: 1, renderFunction: renderMovies });
 }
 
 function keepLibraryBtnStyle() {
