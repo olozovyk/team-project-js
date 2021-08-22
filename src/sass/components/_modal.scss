@@ -186,8 +186,8 @@ li {
   height: 100vh;
   background-color: rgba(1, 1, 1, 0.5);
   opacity: 1;
-  transition: 0.3s;
   overflow-y: scroll;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
   @media desktop {
     overflow-y: auto;
   }
@@ -249,23 +249,6 @@ li {
   border: none;
   outline: none;
   box-shadow: 0 0 0 3px $orange;
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(1, 1, 1, 0.5);
-  opacity: 1;
-
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.backdrop__hidden {
-  opacity: 0;
-  pointer-events: none;
 }
 
 // Стили кнопок, если фильм уже в каком-то из списков
