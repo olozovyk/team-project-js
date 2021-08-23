@@ -36,7 +36,7 @@ main {
   border-radius: 5px;
   overflow: hidden;
   background-image: url('../images/default_cover.jpg');
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   @include tablet {
     width: 294px;

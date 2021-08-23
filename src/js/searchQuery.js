@@ -1,15 +1,13 @@
-import Pagination from 'tui-pagination';
 import { Loading } from 'notiflix';
 import 'tui-pagination/dist/tui-pagination.min.css';
-import { getMovies } from './fetch';
 import templatingOneFilm from '../templates/templatingOneFilm.hbs';
 import { refs } from './refs';
-import { dataSet, genresSet } from './templatingSettings';
 import { controlModal } from './modal';
 import { addCoverDefault } from './addCoverDefault';
+import { handleMoviesObj } from './handleMoviesObj';
+import { makePagination } from './makePagination';
 
 Loading.init({ svgColor: '#ff6b08' });
-
 refs.searchForm.addEventListener('submit', onInputSearch);
 
 let page = 1;
@@ -28,55 +26,30 @@ function onInputSearch(e) {
   }
 
   clearInterface();
-
-  async function makePagination({ page, query } = {}) {
-    const total = await showMovies({ page, query: searchQuery });
-    if (total === null) {
-      return;
-    }
-    const paginationEl = document.querySelector('.js-pagination');
-    const instance = new Pagination(paginationEl, {
-      totalItems: total,
-      itemsPerPage: 20,
-      centerAlign: true,
-      page,
-    });
-    instance.on('beforeMove', function (eventData) {
-      refs.movies.innerHTML = '';
-      return showMovies({ page: eventData.page, query: searchQuery });
-    });
-  }
-
-  makePagination({ page, query: searchQuery });
+  makePagination({ page, query: searchQuery, renderFunction: renderMoviesFromSearch });
 }
 
-async function showMovies({ page, query } = {}) {
+async function renderMoviesFromSearch(page) {
   Loading.init({ svgColor: '#ff6b08' });
   Loading.dots('Загрузка...');
-  const data = await getMovies({ page, query: searchQuery });
-  const arrayOfMovies = data.movies.map(movie => {
-    const filmGenres = genresSet(movie.genreNames);
-    const filmDate = dataSet(movie.release_date);
-    return { ...movie, filmGenres, filmDate };
-  });
-  if (arrayOfMovies.length === 0) {
+  const data = await handleMoviesObj({ page, query: searchQuery });
+  if (data.total === 0) {
     refs.headerFailureNotice.classList.remove('hidden');
     refs.searchForm.reset();
     Loading.remove(500);
     return null;
   }
-
   refs.headerFailureNotice.classList.add('hidden');
-  cardRender(arrayOfMovies);
+  cardRender(data.movies);
   addCoverDefault(refs.filmList);
   controlModal();
   refs.searchForm.reset();
   Loading.remove(500);
-  return data.total_results;
+  return data.total;
 }
 
 function cardRender(movies) {
-  refs.filmList.insertAdjacentHTML('beforeend', templatingOneFilm(movies));
+  refs.movies.innerHTML = templatingOneFilm(movies);
 }
 
 function clearInterface() {
